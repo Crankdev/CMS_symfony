@@ -1,0 +1,64 @@
+# src/Front/TopBundle/Resources/config/doctrine/Activities.orm.yml
+Front\TopBundle\Entity\Activities:
+  type: entity
+  table: activities
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 255
+      unique: true
+    name_ru:
+      type: string
+      length: 255
+      unique: true
+      nullable: true
+    name_en:
+      type: string
+      length: 255
+      unique: true
+      nullable: true
+    about:
+      type: string
+      length: 2555
+      nullable: true
+    about_ru:
+      type: string
+      length: 2555
+      nullable: true
+    about_en:
+      type: string
+      length: 2555
+      nullable: true
+    url:
+      type: string
+      length: 255
+      nullable: true
+    is_activated:
+      type: boolean
+      nullable: true
+    created_at:
+      type: datetime
+    updated_at:
+      type: datetime
+      nullable: true
+  oneToMany:
+    foto:
+      targetEntity: Foto
+      mappedBy: activities
+    people:
+      targetEntity: People
+      mappedBy: activities
+  manyToOne:
+    project:
+      targetEntity: Project
+      inversedBy: activities
+      joinColumn:
+        name: project_id
+        referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]
+    preUpdate: [ setUpdatedAtValue ]

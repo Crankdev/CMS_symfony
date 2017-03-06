@@ -1,0 +1,26 @@
+# src/Front/TopBundle/Resources/config/doctrine/Foto.orm.yml
+Front\TopBundle\Entity\Foto:
+  type: entity
+  table: foto
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 255
+      unique: true
+    size_x:
+      type: integer
+      nullable: true
+    size_y:
+      type: integer
+      nullable: true
+  manyToOne:
+    activites:
+      targetEntity: Activities
+      inversedBy: fotos
+      joinColumn:
+        name: activities_id
+        referencedColumnName: id
