@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Activities list</h1>
+
+    <table border="1px" style="border: 1ex ; border-color: #0000F0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Name_ru</th>
+                <th>Name_en</th>
+                <th>About</th>
+                <th>About_ru</th>
+                <th>About_en</th>
+                <th>Url</th>
+                <th>Is_activated</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for activity in activities %}
+            <tr>
+                <td><a href="{{ path('Front_proj_show', { 'id': activity.id }) }}">{{ activity.id }}</a></td>
+                <td>{{ activity.name }}</td>
+                <td>{{ activity.nameru }}</td>
+                <td>{{ activity.nameen }}</td>
+                <td>{{ activity.about }}</td>
+                <td>{{ activity.aboutru }}</td>
+                <td>{{ activity.abouten }}</td>
+                <td>{{ activity.url }}</td>
+                <td>{% if activity.isactivated %}Yes{% else %}No{% endif %}</td>
+                <td>{% if activity.createdat %}{{ activity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if activity.updatedat %}{{ activity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('Front_proj_show', { 'id': activity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('Front_proj_edit', { 'id': activity.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('Front_proj_new') }}">Create a new activity</a>
+        </li>
+    </ul>
+{% endblock %}
