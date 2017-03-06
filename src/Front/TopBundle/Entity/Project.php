@@ -1,7 +1,7 @@
 <?php
 
 namespace Front\TopBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Project
  */

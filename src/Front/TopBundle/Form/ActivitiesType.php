@@ -13,7 +13,20 @@ class ActivitiesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('name_ru')->add('name_en')->add('about')->add('about_ru')->add('about_en')->add('url')->add('is_activated')->add('created_at')->add('updated_at')->add('project')        ;
+        $builder
+            //->add('id')
+            ->add('name')
+            ->add('name_ru')
+            ->add('name_en')
+            ->add('about')
+            ->add('about_ru')
+            ->add('about_en')
+            ->add('url')
+            ->add('is_activated')
+            //->add('created_at')
+            ->add('updated_at')
+            //->add('project')
+        ;
     }
     
     /**

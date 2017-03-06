@@ -1,24 +1,24 @@
-Front_proj_index:
+Front_foto_index:
     path:     /
-    defaults: { _controller: "FrontTopBundle:Activities:index" }
+    defaults: { _controller: "FrontTopBundle:Foto:index" }
     methods:  GET
 
-Front_proj_show:
+Front_foto_show:
     path:     /{id}/show
-    defaults: { _controller: "FrontTopBundle:Activities:show" }
+    defaults: { _controller: "FrontTopBundle:Foto:show" }
     methods:  GET
 
-Front_proj_new:
+Front_foto_new:
     path:     /new
-    defaults: { _controller: "FrontTopBundle:Activities:new" }
+    defaults: { _controller: "FrontTopBundle:Foto:new" }
     methods:  [GET, POST]
 
-Front_proj_edit:
+Front_foto_edit:
     path:     /{id}/edit
-    defaults: { _controller: "FrontTopBundle:Activities:edit" }
+    defaults: { _controller: "FrontTopBundle:Foto:edit" }
     methods:  [GET, POST]
 
-Front_proj_delete:
+Front_foto_delete:
     path:     /{id}/delete
-    defaults: { _controller: "FrontTopBundle:Activities:delete" }
+    defaults: { _controller: "FrontTopBundle:Foto:delete" }
     methods:  DELETE

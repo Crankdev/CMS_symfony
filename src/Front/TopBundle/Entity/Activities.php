@@ -1,7 +1,7 @@
 <?php
 
 namespace Front\TopBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Activities
  */
@@ -321,7 +321,7 @@ class Activities
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updated_at = new \DateTime();
+        $this->updated_at = new \DateTime();;
 
         return $this;
     }
@@ -432,7 +432,10 @@ class Activities
      */
     public function setCreatedAtValue()
     {
-        // Add your code here
+        if($this->created_at == null)
+        {
+            $this->created_at = new \DateTime();
+        }
     }
 
     /**

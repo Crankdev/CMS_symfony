@@ -1,7 +1,7 @@
 <?php
 
 namespace Front\TopBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Foto
  */
@@ -138,5 +138,6 @@ class Foto
     {
         return $this->activites;
     }
+
 }
 
