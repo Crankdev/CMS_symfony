@@ -1,3 +1,7 @@
+front_menu:
+    resource: "@FrontMenuBundle/Resources/config/routing.yml"
+    prefix:   /
+
 front_top:
     resource: "@FrontTopBundle/Resources/config/routing.yml"
     prefix:   /

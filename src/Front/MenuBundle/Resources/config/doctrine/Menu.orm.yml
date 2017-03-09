@@ -1,0 +1,41 @@
+Front\MenuBundle\Entity\Menu:
+  type: entity
+  table: menu
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 255
+      unique: true
+    name_ru:
+      type: string
+      length: 255
+      unique: true
+      nullable: true
+    name_en:
+      type: string
+      length: 255
+      unique: true
+      nullable: true
+    url:
+      type: string
+      length: 255
+      unique: true
+      nullable: true
+    is_activated:
+      type: boolean
+      nullable: true
+  oneToMany:
+    listit:
+      targetEntity: Listit
+      mappedBy: menu
+  manyToOne:
+    menu:
+      targetEntity: Menu
+      inversedBy: menu
+      joinColumn:
+        name: menu_id
+        referencedColumnName: id

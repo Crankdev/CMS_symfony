@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Activity</h1>
+    <h1>Foto</h1>
 
     <table>
         <tbody>
@@ -14,23 +14,28 @@
                 <td>{{ foto.name }}</td>
             </tr>
             <tr>
-                <th>Name_ru</th>
+                <th>Foto</th>
+                <td><img src="{{ asset('uploads/imeges/') ~foto.name }}"  width="30%">}</td>
+            </tr>
+
+            <tr>
+                <th>sizex</th>
                 <td>{{ foto.sizex }}</td>
             </tr>
             <tr>
-                <th>Name_en</th>
+                <th>sizey</th>
                 <td>{{ foto.sizey }}</td>
             </tr>
-
+            <tr>
+                <th>activety</th>
+                <td>{{ foto.activites }}</td>
+            </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
             <a href="{{ path('Front_foto_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('Front_foto_edit', { 'id': foto.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

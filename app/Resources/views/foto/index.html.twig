@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Activities list</h1>
 
-    <table border="1px" style="border-color: #0000F0">
+    <table>
         <thead>
             <tr>
                 <th>Id</th>
@@ -22,16 +22,7 @@
                 <td><img src="{{ asset('uploads/imeges/') ~foto.name }}"  width="10%"></td>
                 <td>{{ foto.sizex }}</td>
                 <td>{{ foto.sizey }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('Front_foto_show', { 'id': foto.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('Front_foto_edit', { 'id': foto.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{{ foto.activites }}</td>
             </tr>
         {% endfor %}
         </tbody>
