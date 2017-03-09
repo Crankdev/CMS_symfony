@@ -1,4 +1,3 @@
-# src/Front/TopBundle/Resources/config/doctrine/Foto.orm.yml
 Front\TopBundle\Entity\Foto:
   type: entity
   table: foto

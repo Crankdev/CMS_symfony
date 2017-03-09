@@ -453,3 +453,4 @@ class Activities
         return $this->name;
     }
 }
+

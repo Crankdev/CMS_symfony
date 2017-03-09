@@ -13,11 +13,6 @@ Front_foto_new:
     defaults: { _controller: "FrontTopBundle:Foto:new" }
     methods:  [GET, POST]
 
-Front_foto_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "FrontTopBundle:Foto:edit" }
-    methods:  [GET, POST]
-
 Front_foto_delete:
     path:     /{id}/delete
     defaults: { _controller: "FrontTopBundle:Foto:delete" }

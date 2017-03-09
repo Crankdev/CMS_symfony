@@ -1,4 +1,3 @@
-# src/Front/TopBundle/Resources/config/doctrine/People.orm.yml
 Front\TopBundle\Entity\People:
   type: entity
   table: people

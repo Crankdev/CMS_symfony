@@ -24,8 +24,8 @@ class ActivitiesType extends AbstractType
             ->add('url')
             ->add('is_activated')
             //->add('created_at')
-            ->add('updated_at')
-            //->add('project')
+            //->add('updated_at')
+            ->add('project')
         ;
     }
     

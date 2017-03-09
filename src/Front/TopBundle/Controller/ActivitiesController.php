@@ -59,10 +59,13 @@ class ActivitiesController extends Controller
      */
     public function showAction(Activities $activity)
     {
+        $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($activity);
-
+        $foto = $em->getRepository('FrontTopBundle:foto')->findAll();
+        //var_dump($foto);
         return $this->render('activities/show.html.twig', array(
             'activity' => $activity,
+            'fotos' => $foto,
             'delete_form' => $deleteForm->createView(),
         ));
     }

@@ -1,4 +1,3 @@
-# src/Front/TopBundle/Resources/config/doctrine/Project.orm.yml
 Front\TopBundle\Entity\Project:
   type: entity
   table: project
@@ -30,5 +29,5 @@ Front\TopBundle\Entity\Project:
       length: 2555
   oneToMany:
     activites:
-      targetEntity: activities
+      targetEntity: Activities
       mappedBy: project

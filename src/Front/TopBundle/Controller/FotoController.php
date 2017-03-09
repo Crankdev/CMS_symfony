@@ -50,10 +50,11 @@ class FotoController extends Controller
             );
             $str=$this->getParameter('imeges_directory'). "/". $fileName;
             $size = getimagesize($str);
-            var_dump($size);
+            //var_dump($size);
             $foto->setName($fileName);
             $foto->setSizeX($size[0]);
             $foto->setSizeY($size[1]);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($foto);
             $em->flush($foto);
