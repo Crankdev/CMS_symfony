@@ -36,7 +36,8 @@ class MenuController extends Controller
         $menu = new Menu();
         $form = $this->createForm('Front\MenuBundle\Form\MenuType', $menu);
         $form->handleRequest($request);
-
+        $em = $this->getDoctrine()->getManager();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($menu);
@@ -47,6 +48,7 @@ class MenuController extends Controller
 
         return $this->render('menu/new.html.twig', array(
             'menu' => $menu,
+            'menus' => $menus,
             'form' => $form->createView(),
         ));
     }
@@ -58,9 +60,11 @@ class MenuController extends Controller
     public function showAction(Menu $menu)
     {
         $deleteForm = $this->createDeleteForm($menu);
-
+        $em = $this->getDoctrine()->getManager();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         return $this->render('menu/show.html.twig', array(
             'menu' => $menu,
+            'menus' => $menus,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -74,7 +78,8 @@ class MenuController extends Controller
         $deleteForm = $this->createDeleteForm($menu);
         $editForm = $this->createForm('Front\MenuBundle\Form\MenuType', $menu);
         $editForm->handleRequest($request);
-
+        $em = $this->getDoctrine()->getManager();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -83,6 +88,7 @@ class MenuController extends Controller
 
         return $this->render('menu/edit.html.twig', array(
             'menu' => $menu,
+            'menus' => $menus,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

@@ -19,7 +19,7 @@ class FotoType extends AbstractType
             ->add('name', FileType::class, array('label' => 'Img '))
             //->add('size_x')
             //->add('size_y')
-            ->add('activites')
+            ->add('activities')
         ;
     }
 

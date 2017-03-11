@@ -1,9 +1,6 @@
 front_top_Front_proj:
     resource: "@FrontTopBundle/Resources/config/routing/activities.yml"
-    prefix:   /Front_proj
+    prefix:   /
 front_top_Front_foto:
     resource: "@FrontTopBundle/Resources/config/routing/foto.yml"
     prefix:   /Front_foto
-front_top_homepage:
-    path:     /
-    defaults: { _controller: FrontTopBundle:Default:index }

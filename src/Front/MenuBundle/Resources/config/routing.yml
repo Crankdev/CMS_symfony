@@ -3,7 +3,4 @@ front_menu_m:
     prefix:   /m
 front_listit_m:
     resource: "@FrontMenuBundle/Resources/config/routing/listit.yml"
-    prefix:   /l
-front_menu_homepage:
-    path:     /
-    defaults: { _controller: FrontMenuBundle:Default:index }
+    prefix:   /

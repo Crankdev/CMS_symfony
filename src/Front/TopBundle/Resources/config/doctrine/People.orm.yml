@@ -14,7 +14,23 @@ Front\TopBundle\Entity\People:
       tyoe: string
       length: 255
       nullable: true
-    foto_peope:
+    name_ru:
+      type: string
+      length: 255
+      nullable: true
+    who_ru:
+      tyoe: string
+      length: 255
+      nullable: true
+    name_en:
+      type: string
+      length: 255
+      nullable: true
+    who_en:
+      tyoe: string
+      length: 255
+      nullable: true
+    foto:
       type: string
       length: 255
       unique: true
@@ -35,7 +51,7 @@ Front\TopBundle\Entity\People:
       unique: true
       nullable: true
   manyToOne:
-    activites:
+    activities:
       targetEntity: Activities
       inversedBy: peoples
       joinColumn:

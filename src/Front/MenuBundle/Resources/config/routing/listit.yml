@@ -1,24 +1,24 @@
 l_index:
-    path:     /
+    path:     /l
     defaults: { _controller: "FrontMenuBundle:Listit:index" }
     methods:  GET
 
 l_show:
-    path:     /{id}/show
+    path:     /{url}
     defaults: { _controller: "FrontMenuBundle:Listit:show" }
     methods:  GET
 
 l_new:
-    path:     /new
+    path:     /l/new
     defaults: { _controller: "FrontMenuBundle:Listit:new" }
     methods:  [GET, POST]
 
 l_edit:
-    path:     /{id}/edit
+    path:     /l/{id}/edit
     defaults: { _controller: "FrontMenuBundle:Listit:edit" }
     methods:  [GET, POST]
 
 l_delete:
-    path:     /{id}/delete
+    path:     /l/{id}/delete
     defaults: { _controller: "FrontMenuBundle:Listit:delete" }
     methods:  DELETE

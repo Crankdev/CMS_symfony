@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Activities
 {
+
     /**
      * @var integer
      */
@@ -62,15 +63,6 @@ class Activities
      */
     private $updated_at;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $foto;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $people;
 
     /**
      * @var \Front\TopBundle\Entity\Project
@@ -78,13 +70,8 @@ class Activities
     private $project;
 
     /**
-     * Constructor
+     *Construct.
      */
-    public function __construct()
-    {
-        $this->foto = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->people = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -452,4 +439,111 @@ class Activities
         }
         return $this->name;
     }
+    /**
+     * @var string
+     */
+    private $needs;
+
+    /**
+     * @var string
+     */
+    private $needs_ru;
+
+    /**
+     * @var string
+     */
+    private $needs_en;
+
+
+    /**
+     * Set needs
+     *
+     * @param string $needs
+     *
+     * @return Activities
+     */
+    public function setNeeds($needs)
+    {
+        $this->needs = $needs;
+
+        return $this;
+    }
+
+    /**
+     * Get needs
+     *
+     * @return string
+     */
+    public function getNeeds()
+    {
+        return $this->needs;
+    }
+
+    /**
+     * Set needsRu
+     *
+     * @param string $needsRu
+     *
+     * @return Activities
+     */
+    public function setNeedsRu($needsRu)
+    {
+        $this->needs_ru = $needsRu;
+
+        return $this;
+    }
+
+    /**
+     * Get needsRu
+     *
+     * @return string
+     */
+    public function getNeedsRu()
+    {
+        return $this->needs_ru;
+    }
+
+    /**
+     * Set needsEn
+     *
+     * @param string $needsEn
+     *
+     * @return Activities
+     */
+    public function setNeedsEn($needsEn)
+    {
+        $this->needs_en = $needsEn;
+
+        return $this;
+    }
+
+    /**
+     * Get needsEn
+     *
+     * @return string
+     */
+    public function getNeedsEn()
+    {
+        return $this->needs_en;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $foto;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $people;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->foto = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->people = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 }

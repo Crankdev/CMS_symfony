@@ -42,10 +42,7 @@ class People
      */
     private $facebook;
 
-    /**
-     * @var \Front\TopBundle\Entity\Activities
-     */
-    private $activites;
+
 
 
     /**
@@ -232,5 +229,179 @@ class People
             return 'NULL';
         }
         return $this->name;
+    }
+    /**
+     * @var \Front\TopBundle\Entity\Activities
+     */
+    private $activities;
+
+
+    /**
+     * Set activities
+     *
+     * @param \Front\TopBundle\Entity\Activities $activities
+     *
+     * @return People
+     */
+    public function setActivities(\Front\TopBundle\Entity\Activities $activities = null)
+    {
+        $this->activities = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Get activities
+     *
+     * @return \Front\TopBundle\Entity\Activities
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+    /**
+     * @var string
+     */
+    private $foto;
+
+
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     *
+     * @return People
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+    /**
+     * @var string
+     */
+    private $name_ru;
+
+    /**
+     * @var string
+     */
+    private $who_ru;
+
+    /**
+     * @var string
+     */
+    private $name_en;
+
+    /**
+     * @var string
+     */
+    private $who_en;
+
+
+    /**
+     * Set nameRu
+     *
+     * @param string $nameRu
+     *
+     * @return People
+     */
+    public function setNameRu($nameRu)
+    {
+        $this->name_ru = $nameRu;
+
+        return $this;
+    }
+
+    /**
+     * Get nameRu
+     *
+     * @return string
+     */
+    public function getNameRu()
+    {
+        return $this->name_ru;
+    }
+
+    /**
+     * Set whoRu
+     *
+     * @param string $whoRu
+     *
+     * @return People
+     */
+    public function setWhoRu($whoRu)
+    {
+        $this->who_ru = $whoRu;
+
+        return $this;
+    }
+
+    /**
+     * Get whoRu
+     *
+     * @return string
+     */
+    public function getWhoRu()
+    {
+        return $this->who_ru;
+    }
+
+    /**
+     * Set nameEn
+     *
+     * @param string $nameEn
+     *
+     * @return People
+     */
+    public function setNameEn($nameEn)
+    {
+        $this->name_en = $nameEn;
+
+        return $this;
+    }
+
+    /**
+     * Get nameEn
+     *
+     * @return string
+     */
+    public function getNameEn()
+    {
+        return $this->name_en;
+    }
+
+    /**
+     * Set whoEn
+     *
+     * @param string $whoEn
+     *
+     * @return People
+     */
+    public function setWhoEn($whoEn)
+    {
+        $this->who_en = $whoEn;
+
+        return $this;
+    }
+
+    /**
+     * Get whoEn
+     *
+     * @return string
+     */
+    public function getWhoEn()
+    {
+        return $this->who_en;
     }
 }

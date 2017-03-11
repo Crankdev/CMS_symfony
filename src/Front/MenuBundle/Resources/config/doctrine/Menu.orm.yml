@@ -18,7 +18,10 @@ Front\MenuBundle\Entity\Menu:
     name_en:
       type: string
       length: 255
-      unique: true
+      nullable: true
+    icon:
+      type: string
+      length: 255
       nullable: true
     url:
       type: string
@@ -27,6 +30,42 @@ Front\MenuBundle\Entity\Menu:
       nullable: true
     is_activated:
       type: boolean
+      nullable: true
+    title:
+      type: string
+      length: 255
+      nullable: true
+    description:
+      type: string
+      length: 255
+      nullable: true
+    keywords:
+      type: string
+      length: 255
+      nullable: true
+    title_ru:
+      type: string
+      length: 255
+      nullable: true
+    description_ru:
+      type: string
+      length: 255
+      nullable: true
+    keywords_ru:
+      type: string
+      length: 255
+      nullable: true
+    title_en:
+      type: string
+      length: 255
+      nullable: true
+    description_en:
+      type: string
+      length: 255
+      nullable: true
+    keywords_en:
+      type: string
+      length: 255
       nullable: true
   oneToMany:
     listit:

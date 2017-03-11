@@ -17,9 +17,9 @@ Front\TopBundle\Entity\Foto:
       type: integer
       nullable: true
   manyToOne:
-    activites:
-      targetEntity: Activities
-      inversedBy: fotos
-      joinColumn:
-        name: activities_id
-        referencedColumnName: id
+    activities:
+        targetEntity: Activities
+        inversedBy: foto
+        joinColumn:
+          name: activities_id
+          referencedColumnName: id

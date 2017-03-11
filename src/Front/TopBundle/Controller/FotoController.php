@@ -19,11 +19,13 @@ class FotoController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        $em = $this->getDoctrine()->getManager();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         $foto= $em->getRepository('FrontTopBundle:Foto')->findAll();
 
         return $this->render('foto/index.html.twig', array(
             'fotos' => $foto,
+            'menus' => $menus,
         ));
     }
 
@@ -36,7 +38,8 @@ class FotoController extends Controller
         $foto = new Foto();
         $form = $this->createForm('Front\TopBundle\Form\FotoType', $foto);
         $form->handleRequest($request);
-
+        $em = $this->getDoctrine()->getManager();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $foto->getName();
 
@@ -65,6 +68,7 @@ class FotoController extends Controller
         return $this->render('foto/new.html.twig', array(
             'foto' => $foto,
             'form' => $form->createView(),
+            'menus' => $menus,
         ));
     }
 
@@ -75,10 +79,12 @@ class FotoController extends Controller
     public function showAction(Foto $foto)
     {
         $deleteForm = $this->createDeleteForm($foto);
-
+        $em = $this->getDoctrine()->getManager();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         return $this->render('foto/show.html.twig', array(
             'foto' => $foto,
             'delete_form' => $deleteForm->createView(),
+            'menus' => $menus,
         ));
     }
 
@@ -91,7 +97,8 @@ class FotoController extends Controller
         $deleteForm = $this->createDeleteForm($foto);
         $editForm = $this->createForm('Front\TopBundle\Form\FotoType', $foto);
         $editForm->handleRequest($request);
-
+        $em = $this->getDoctrine()->getManager();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -102,6 +109,7 @@ class FotoController extends Controller
             'foto' => $foto,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'menus' => $menus,
         ));
     }
 

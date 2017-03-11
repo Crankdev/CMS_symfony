@@ -19,11 +19,12 @@ class ListitController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $listits = $em->getRepository('FrontMenuBundle:Listit')->findAll();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
 
         return $this->render('listit/index.html.twig', array(
             'listits' => $listits,
+            'menus'   => $menus,
         ));
     }
 
@@ -33,7 +34,9 @@ class ListitController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $listit = new Listit();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         $form = $this->createForm('Front\MenuBundle\Form\ListitType', $listit);
         $form->handleRequest($request);
 
@@ -42,12 +45,13 @@ class ListitController extends Controller
             $em->persist($listit);
             $em->flush($listit);
 
-            return $this->redirectToRoute('l_show', array('id' => $listit->getId()));
+            return $this->redirectToRoute('l_show', array('url' => $listit->getUrl()));
         }
 
         return $this->render('listit/new.html.twig', array(
             'listit' => $listit,
             'form' => $form->createView(),
+            'menus'   => $menus,
         ));
     }
 
@@ -57,11 +61,13 @@ class ListitController extends Controller
      */
     public function showAction(Listit $listit)
     {
+        $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($listit);
-
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         return $this->render('listit/show.html.twig', array(
             'listit' => $listit,
             'delete_form' => $deleteForm->createView(),
+            'menus'   => $menus,
         ));
     }
 
@@ -71,10 +77,11 @@ class ListitController extends Controller
      */
     public function editAction(Request $request, Listit $listit)
     {
+        $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($listit);
         $editForm = $this->createForm('Front\MenuBundle\Form\ListitType', $listit);
         $editForm->handleRequest($request);
-
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -85,6 +92,7 @@ class ListitController extends Controller
             'listit' => $listit,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'menus'   => $menus,
         ));
     }
 

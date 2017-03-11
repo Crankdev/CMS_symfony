@@ -42,10 +42,7 @@ class People
      */
     private $facebook;
 
-    /**
-     * @var \Front\TopBundle\Entity\Activities
-     */
-    private $activites;
+
 
 
     /**
@@ -233,5 +230,62 @@ class People
         }
         return $this->name;
     }
-}
+    /**
+     * @var \Front\TopBundle\Entity\Activities
+     */
+    private $activities;
 
+
+    /**
+     * Set activities
+     *
+     * @param \Front\TopBundle\Entity\Activities $activities
+     *
+     * @return People
+     */
+    public function setActivities(\Front\TopBundle\Entity\Activities $activities = null)
+    {
+        $this->activities = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Get activities
+     *
+     * @return \Front\TopBundle\Entity\Activities
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+    /**
+     * @var string
+     */
+    private $foto;
+
+
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     *
+     * @return People
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+}

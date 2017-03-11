@@ -4,12 +4,12 @@ Front_proj_index:
     methods:  GET
 
 Front_proj_show:
-    path:     /{id}/show
+    path:     /news/{id}/show
     defaults: { _controller: "FrontTopBundle:Activities:show" }
     methods:  GET
 
 Front_proj_new:
-    path:     /new
+    path:     /news/new
     defaults: { _controller: "FrontTopBundle:Activities:new" }
     methods:  [GET, POST]
 
@@ -22,3 +22,7 @@ Front_proj_delete:
     path:     /{id}/delete
     defaults: { _controller: "FrontTopBundle:Activities:delete" }
     methods:  DELETE
+Front_proj2_show:
+    path:     /p/{id}
+    defaults: { _controller: "FrontTopBundle:Activities:showp" }
+    methods:  GET

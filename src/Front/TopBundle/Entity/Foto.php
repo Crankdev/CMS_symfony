@@ -2,6 +2,7 @@
 
 namespace Front\TopBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Foto
  */
@@ -28,9 +29,9 @@ class Foto
     private $size_y;
 
     /**
-     * @var \Front\TopBundle\Entity\Activities
+
      */
-    private $activites;
+    private $activities;
 
 
     /**
@@ -115,29 +116,36 @@ class Foto
         return $this->size_y;
     }
 
+
+    public function __toString()
+    {
+        if(is_null($this->name)) {
+            return 'NULL';
+        }
+        return $this->name;
+    }
+
     /**
-     * Set activites
+     * Set activities
      *
-     * @param \Front\TopBundle\Entity\Activities $activites
+     * @param \Front\TopBundle\Entity\Activities $activities
      *
      * @return Foto
      */
-    public function setActivites(\Front\TopBundle\Entity\Activities $activites = null)
+    public function setActivities(\Front\TopBundle\Entity\Activities $activities = null)
     {
-        $this->activites = $activites;
+        $this->activities = $activities;
 
         return $this;
     }
 
     /**
-     * Get activites
+     * Get activities
      *
      * @return \Front\TopBundle\Entity\Activities
      */
-    public function getActivites()
+    public function getActivities()
     {
-        return $this->activites;
+        return $this->activities;
     }
-
-
 }

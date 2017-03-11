@@ -25,6 +25,7 @@ class ActivitiesType extends AbstractType
             ->add('is_activated')
             //->add('created_at')
             //->add('updated_at')
+            ->add('foto')
             ->add('project')
         ;
     }

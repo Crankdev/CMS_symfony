@@ -25,7 +25,7 @@
         <tbody>
         {% for listit in listits %}
             <tr>
-                <td><a href="{{ path('l_show', { 'id': listit.id }) }}">{{ listit.id }}</a></td>
+                <td><a href="{{ path('l_show', { 'url': listit.url }) }}">{{ listit.id }}</a></td>
                 <td>{{ listit.name }}</td>
                 <td>{{ listit.nameru }}</td>
                 <td>{{ listit.nameen }}</td>
@@ -41,7 +41,7 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('l_show', { 'id': listit.id }) }}">show</a>
+                            <a href="{{ path('l_show', { 'url': listit.url }) }}">show</a>
                         </li>
                         <li>
                             <a href="{{ path('l_edit', { 'id': listit.id }) }}">edit</a>

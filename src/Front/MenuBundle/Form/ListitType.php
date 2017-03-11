@@ -23,6 +23,8 @@ class ListitType extends AbstractType
             ->add('url')
             ->add('is_activated')
             ->add('foto')
+            ->add('youtube')
+           // ->add('updated_at')
             ->add('menu');
     }
     

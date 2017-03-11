@@ -17,6 +17,7 @@ class MenuType extends AbstractType
             ->add('name_ru')
             ->add('name_en')
             ->add('url')
+            ->add('icon')
             ->add('is_activated')
             ->add('menu');
     }

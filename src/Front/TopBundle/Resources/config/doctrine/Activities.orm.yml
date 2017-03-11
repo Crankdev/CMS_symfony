@@ -1,4 +1,3 @@
-# src/Front/TopBundle/Resources/config/doctrine/Activities.orm.yml
 Front\TopBundle\Entity\Activities:
   type: entity
   table: activities
@@ -30,6 +29,18 @@ Front\TopBundle\Entity\Activities:
       length: 2555
       nullable: true
     about_en:
+      type: string
+      length: 2555
+      nullable: true
+    needs:
+      type: string
+      length: 2555
+      nullable: true
+    needs_ru:
+      type: string
+      length: 2555
+      nullable: true
+    needs_en:
       type: string
       length: 2555
       nullable: true
