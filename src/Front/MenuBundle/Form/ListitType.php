@@ -5,6 +5,7 @@ namespace Front\MenuBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ListitType extends AbstractType
 {
@@ -22,7 +23,7 @@ class ListitType extends AbstractType
             ->add('locales')
             ->add('url')
             ->add('is_activated')
-            ->add('foto')
+            ->add('foto', FileType::class, array('label' => 'Img ', 'data_class' => null))
             ->add('youtube')
            // ->add('updated_at')
             ->add('menu');

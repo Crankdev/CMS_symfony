@@ -41,6 +41,19 @@ class ListitController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $listit->getFoto();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('imeges_list_directory'),
+                $fileName
+            );
+            $listit->setFoto($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($listit);
             $em->flush($listit);
@@ -83,6 +96,17 @@ class ListitController extends Controller
         $editForm->handleRequest($request);
         $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $file = $listit->getFoto();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('imeges_list_directory'),
+                $fileName
+            );
+            $listit->setFoto($fileName);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('l_edit', array('id' => $listit->getId()));

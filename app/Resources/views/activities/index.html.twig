@@ -1,10 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block title %}
-
-{% endblock %}
 {% block body %}
-
-        {% for activity in activities %}
+    {% for activity in activities %}
     <!-- Blog Post -->
     <div class="blog-post padding-bottom-20">
         <!-- Blog Item Header -->
@@ -18,10 +14,9 @@
             <!-- End Title -->
             <!-- Date -->
             <div class="blog-post-date">
-                <a href="#">
-                    {% if activity.updatedat %}{{ activity.updatedat|date('Y-m-d') }}
-                    {% else %}{{ activity.createdat|date('Y-m-d') }}
-                    {% endif %}</a>
+                {% if activity.updatedat %}{{ activity.updatedat|date('d/m/Y') }}
+                {% else %}{{ activity.createdat|date('d/m/Y') }}
+                {% endif %}
             </div>
             <!-- End Date -->
         </div>
@@ -70,8 +65,7 @@
     </div>
 
     <!-- End Blog Item -->
-
-        {% endfor %}
+    {% endfor %}
     <ul>
         <li>
             <a href="{{ path('Front_proj_new') }}">Create a new activity</a>

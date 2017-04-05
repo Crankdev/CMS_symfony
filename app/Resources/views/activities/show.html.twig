@@ -2,108 +2,141 @@
 {% block title %}
 
 {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/css/bootstrap.css') }}" >
+    <link rel="stylesheet" href="{{ asset('style/css/animate.css') }}" >
+    <link rel="stylesheet" href="{{ asset('style/css/font-awesome.css') }}" >
+    <link rel="stylesheet" href="{{ asset('style/css/nexus.css') }}" >
+    <link rel="stylesheet" href="{{ asset('style/css/responsive.css') }}" >
+    <link rel="stylesheet" href="{{ asset('style/css/custom.css') }}" >
+    <!-- Google Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/blog.css') }}" rel="stylesheet" />
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css'>
+<link rel="stylesheet" href="{{ asset('style/css/photoswiper.css')}}">
+{% endblock %}
 {% block body %}
-    <div id="content">
-        <div class="container background-white">
-            <div class="row margin-vert-30">
-                <!-- Main Column -->
-                <div class="blog-post">
-                    <div class="blog-item-header">
-                        <h2>
-                            <a href="#">
-                                {{ activity.name }}
-                            </a>
-                        </h2>
-                        <!-- Date -->
-                        <div class="blog-post-date">
-                            <a href="#">
-                                {% if activity.updatedat %}{{ activity.updatedat|date('Y-m-d') }}
-                                {% else %}{{ activity.createdat|date('Y-m-d') }}
-                                {% endif %}</a>
-                        </div>
-                        <!-- End Date -->
-                    </div>
-                    <div class="blog-post-details">
+    <div class="blog-post">
+        <div class="blog-item-header">
+            <h2>
+                <a href="#">
+                    {{ activity.name }}
+                </a>
+            </h2>
+            <!-- Date -->
+            <div class="blog-post-date">
+                    {% if activity.updatedat %}{{ activity.updatedat|date('d/m/Y') }}
+                        {% else %}{{ activity.createdat|date('d/m/Y') }}
+                    {% endif %}
+            </div>
+            <!-- End Date -->
+        </div>
+        <div class="blog-post-details">
                         <!-- Author Name -->
-                        <div class="blog-post-details-item blog-post-details-item-left user-icon">
-                            <i class="fa fa-user color-gray-light"></i>
-                            <a href="#">Admin</a>
-                        </div>
-                        <!-- End Author Name -->
-                        <!-- Tags -->
-                        <div class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-                            <i class="fa fa-tag color-gray-light"></i>
-                            <a href="#">PHP</a>,
-                            <a href="#">Javascript</a>,
-                            <a href="#">CoffeeScript</a>
-                        </div>
-                        <!-- End Tags -->
-                    </div>
-                    <div class="blog-item">
-                        <div class="clearfix"></div>
-                        <div class="blog-post-body row margin-top-15">
-                            <div class="col-md-7">
-                            </div>
-                            <div class="col-md-12">
-                                <p>{{ activity.about }}</p>
-                                <blockquote class="primary">
-                                    <p>
-                                        <em>{{ activity.needs }}</em>
-                                    </p>
-                                    <small>
-
-                                        <cite title="Source Title">Потреби</cite>
-                                    </small>
-                                </blockquote>
-                                <h2>FOTO</h2>
-                                <div class="row">
-                                    <div class="col-md-12 portfolio-group no-padding">
-                                        <!-- Portfolio Item -->
-                                        {% for foto in activity.foto %}
-                                            <div class="col-md-3 portfolio-item margin-bottom-40 code">
-                                            <div>
-                                                <a href="#">
-                                                    <figure>
-                                                        <img class="margin-bottom-20" src="{{ asset('uploads/imeges/') ~foto.name }}" alt="image1">
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        {% for people in activity.people %}
-                        <div class="blog-item-footer">
-                            <!-- About the Author -->
-                            <div class="blog-author panel panel-default margin-bottom-30">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <img class="pull-left" src="{{ asset('uploads/foto_people/') ~people.foto }}" alt="image1">
-                                        </div>
-                                        <div class="col-md-10">
-                                            <label>{{ people.name }}</label>
-                                            <p>{{ people.who }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="blog-post-details-item blog-post-details-item-left user-icon">
+                <i class="fa fa-user color-gray-light"></i>
+                <a href="#">Admin</a>
+            </div>
+            <!-- End Author Name -->
+            <!-- Tags -->
+            <div class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
+                <i class="fa fa-tag color-gray-light"></i>
+                <a href="#">PHP</a>,
+                <a href="#">Javascript</a>,
+                <a href="#">CoffeeScript</a>
+            </div>
+            <!-- End Tags -->
+        </div>
+        <div class="blog-item">
+            <div class="clearfix"></div>
+            <div class="blog-post-body row margin-top-15">
+                <div class="col-md-7">
+                </div>
+                <div class="col-md-12">
+                    <p class="lead">{{ activity.about }}</p>
+                    <blockquote class="primary">
+                        <p>
+                            <em>{{ activity.needs }}</em>
+                        </p>
+                        <small>
+                            <cite title="Source Title">Потреби</cite>
+                        </small>
+                    </blockquote>
+                    <h2>FOTO</h2>
+                    <div class="row">
+                        <div class="col-md-12 portfolio-group no-padding">
+                            <!-- Portfolio Item -->
+                            <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                            {% for foto in activity.foto %}
+                                     <figure class="col-md-3 portfolio-item margin-bottom-40 code" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                          <a href="{{ asset('uploads/imeges/') ~foto.name }}" itemprop="contentUrl" data-size="{{ foto.sizex }}x{{ foto.sizey }}">
+                                              <img src="{{ asset('uploads/imeges/') ~foto.name }}" itemprop="thumbnail" alt="Image description" />
+                                          </a>
+                                     </figure>
                             {% endfor %}
-                            <!-- End About the Author -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- End Blog Post -->
-        </div>
-        <!-- End Main Column -->
-    </div>
-    </div>
-    </div>
-    <!-- === END CONTENT === -->
+            <hr class="margin-top-20">
+            <div class="row">
+            <!-- Testimonials - Default Full Width -->
+                <div class="col-md-12">
+                    <div class="carousel slide testimonials" id="testimonials2">
+                        <ol class="carousel-indicators">
+                            <li class="active" data-slide-to="0" data-target="#testimonials2"></li>
+                            <li data-slide-to="1" data-target="#testimonials2"></li>
+                            <li data-slide-to="2" data-target="#testimonials2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            {% for people in activity.people %}
+                                {% if people %}
+                                <div class="item {% if  people == activity.people[0].name %} active {% endif %}">
+                                    <div class="testimonials-bg-dark col-md-12">
+                                        <p>{{ people.who }}</p>
+                                            <div class="testimonial-info">
+                                                <img alt="" src="{{ asset('uploads/foto_people/') ~people.foto }}" class="img-circle img-responsive" />
+                                                <span class="testimonial-author">
+                                                    {{ people.name }}
+                                                    <em>
+                                                        <a href="{{ people.facebook }}" title="Facebook" class="">
+                                                            <i class="fa fa-facebook"></i>&nbsp;{{ people.facebook }}
+                                                        </a>
+                                                        <a href="mailto:{{ people.mail }}" title="Mail" class="">
+                                                            <i class="fa fa-envelope"></i>&nbsp;{{ people.mail }}
+                                                        </a>
+                                                        <a title="Phone" class="">
+                                                            <i class="fa fa-phone"></i>&nbsp;{{ people.phone }}
+                                                        </a>
+                                                    </em>
+                                                 </span>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
 
+                            </div>
+                        </div>
+                        <div class="testimonials-arrows pull-right">
+                            <a class="left" href="#testimonials2" data-slide="prev">
+                                <span class="fa fa-arrow-left"></span>
+                            </a>
+                            <a class="right" href="#testimonials2" data-slide="next">
+                                <span class="fa fa-arrow-right"></span>
+                            </a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- End Testimonials - default full width -->
+                 </div>
+            </div>
+        </div>
+            <!-- End Blog Post -->
+    </div>
+    <!-- End Main Column -->
     <ul>
         <li>
             <a href="{{ path('Front_proj_index') }}">Back to the list</a>
@@ -117,4 +150,76 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js'></script>
+
+    <script src="{{ asset('style/js/photoswiper.js')}}"></script>
+{% endblock %}
+{% block other %}
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <!-- Background of PhotoSwipe.
+             It's a separate element, as animating opacity is faster than rgba(). -->
+        <div class="pswp__bg"></div>
+
+        <!-- Slides wrapper with overflow:hidden. -->
+        <div class="pswp__scroll-wrap">
+
+            <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+            <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+            <div class="pswp__ui pswp__ui--hidden">
+
+                <div class="pswp__top-bar">
+
+                    <!--  Controls are self-explanatory. Order can be changed. -->
+
+                    <div class="pswp__counter"></div>
+
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                    <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                    <!-- element will get class pswp__preloader--active when preloader is running -->
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button>
+
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 {% endblock %}

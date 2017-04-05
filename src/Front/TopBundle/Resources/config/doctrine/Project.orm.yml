@@ -28,6 +28,6 @@ Front\TopBundle\Entity\Project:
       type: string
       length: 2555
   oneToMany:
-    activites:
+    activities:
       targetEntity: Activities
       mappedBy: project

@@ -1,0 +1,24 @@
+people_index:
+    path:     /
+    defaults: { _controller: "FrontTopBundle:People:index" }
+    methods:  GET
+
+people_show:
+    path:     /{id}/show
+    defaults: { _controller: "FrontTopBundle:People:show" }
+    methods:  GET
+
+people_new:
+    path:     /new
+    defaults: { _controller: "FrontTopBundle:People:new" }
+    methods:  [GET, POST]
+
+people_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FrontTopBundle:People:edit" }
+    methods:  [GET, POST]
+
+people_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FrontTopBundle:People:delete" }
+    methods:  DELETE

@@ -1,0 +1,149 @@
+admin_index_menu:
+    path:     /menu/
+    defaults: { _controller: "AdminBundle:Admin:index_menu" }
+    methods:  GET
+
+admin_show_menu:
+    path:     /menu/{id}/show
+    defaults: { _controller: "AdminBundle:Admin:show_menu" }
+    methods:  GET
+
+admin_new_menu:
+    path:     /menu/new
+    defaults: { _controller: "AdminBundle:Admin:new_menu" }
+    methods:  [GET, POST]
+
+admin_edit_menu:
+    path:     /menu/{id}/edit
+    defaults: { _controller: "AdminBundle:Admin:edit_menu" }
+    methods:  [GET, POST]
+
+admin_delete_menu:
+    path:     /menu/{id}/delete
+    defaults: { _controller: "AdminBundle:Admin:delete_menu" }
+    methods:  DELETE
+    
+admin_index_foto:
+    path:     /foto/
+    defaults: { _controller: "AdminBundle:Admin:index_foto" }
+    methods:  GET
+
+admin_show_foto:
+    path:     /foto/{id}/show
+    defaults: { _controller: "AdminBundle:Admin:show_foto" }
+    methods:  GET
+
+admin_new_foto:
+    path:     /foto/new
+    defaults: { _controller: "AdminBundle:Admin:new_foto" }
+    methods:  [GET, POST]
+
+admin_edit_foto:
+    path:     /foto/{id}/edit
+    defaults: { _controller: "AdminBundle:Admin:edit_foto" }
+    methods:  [GET, POST]
+
+admin_delete_foto:
+    path:     /foto/{id}/delete
+    defaults: { _controller: "AdminBundle:Admin:delete_foto" }
+    methods:  DELETE
+
+admin_index_people:
+    path:     /people/
+    defaults: { _controller: "AdminBundle:Admin:index_people" }
+    methods:  GET
+
+admin_show_people:
+    path:     /people/{id}/show
+    defaults: { _controller: "AdminBundle:Admin:show_people" }
+    methods:  GET
+
+admin_new_people:
+    path:     /people/new
+    defaults: { _controller: "AdminBundle:Admin:new_people" }
+    methods:  [GET, POST]
+
+admin_edit_people:
+    path:     /people/{id}/edit
+    defaults: { _controller: "AdminBundle:Admin:edit_people" }
+    methods:  [GET, POST]
+
+admin_delete_people:
+    path:     /people/{id}/delete
+    defaults: { _controller: "AdminBundle:Admin:delete_people" }
+    methods:  DELETE
+
+admin_index_listit:
+    path:     /listit/
+    defaults: { _controller: "AdminBundle:Admin:index_listit" }
+    methods:  GET
+
+admin_show_listit:
+    path:     /listit/{id}/show
+    defaults: { _controller: "AdminBundle:Admin:show_listit" }
+    methods:  GET
+
+admin_new_listit:
+    path:     /listit/new
+    defaults: { _controller: "AdminBundle:Admin:new_listit" }
+    methods:  [GET, POST]
+
+admin_edit_listit:
+    path:     /listit/{id}/edit
+    defaults: { _controller: "AdminBundle:Admin:edit_listit" }
+    methods:  [GET, POST]
+
+admin_delete_listit:
+    path:     /listit/{id}/delete
+    defaults: { _controller: "AdminBundle:Admin:delete_listit" }
+    methods:  DELETE
+
+admin_index_activity:
+    path:     /activity/
+    defaults: { _controller: "AdminBundle:Admin:index_activity" }
+    methods:  GET
+
+admin_show_activity:
+    path:     /activity/{id}/show
+    defaults: { _controller: "AdminBundle:Admin:show_activity" }
+    methods:  GET
+
+admin_new_activity:
+    path:     /activity/new
+    defaults: { _controller: "AdminBundle:Admin:new_activity" }
+    methods:  [GET, POST]
+
+admin_edit_activity:
+    path:     /activity/{id}/edit
+    defaults: { _controller: "AdminBundle:Admin:edit_activity" }
+    methods:  [GET, POST]
+
+admin_delete_activity:
+    path:     /activity/{id}/delete
+    defaults: { _controller: "AdminBundle:Admin:delete_activity" }
+    methods:  DELETE
+    
+admin_index_project:
+    path:     /project/
+    defaults: { _controller: "AdminBundle:Admin:index_project" }
+    methods:  GET
+
+admin_show_project:
+    path:     /project/{id}/show
+    defaults: { _controller: "AdminBundle:Admin:show_project" }
+    methods:  GET
+
+admin_new_project:
+    path:     /project/new
+    defaults: { _controller: "AdminBundle:Admin:new_project" }
+    methods:  [GET, POST]
+
+admin_edit_project:
+    path:     /project/{id}/edit
+    defaults: { _controller: "AdminBundle:Admin:edit_project" }
+    methods:  [GET, POST]
+
+admin_delete_project:
+    path:     /project/{id}/delete
+    defaults: { _controller: "AdminBundle:Admin:delete_project" }
+    methods:  DELETE

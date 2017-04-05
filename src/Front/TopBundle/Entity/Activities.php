@@ -432,13 +432,7 @@ class Activities
     {
         // Add your code here
     }
-    public function __toString()
-    {
-        if(is_null($this->name)) {
-            return 'NULL';
-        }
-        return $this->name;
-    }
+
     /**
      * @var string
      */
@@ -545,5 +539,11 @@ class Activities
         $this->foto = new \Doctrine\Common\Collections\ArrayCollection();
         $this->people = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    public function __toString()
+    {
+        if(is_null($this->name)) {
+            return 'NULL';
+        }
+        return $this->name;
+    }
 }

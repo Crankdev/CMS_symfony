@@ -38,8 +38,10 @@ class FotoController extends Controller
         $foto = new Foto();
         $form = $this->createForm('Front\TopBundle\Form\FotoType', $foto);
         $form->handleRequest($request);
+
         $em = $this->getDoctrine()->getManager();
         $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $foto->getName();
 
@@ -53,7 +55,7 @@ class FotoController extends Controller
             );
             $str=$this->getParameter('imeges_directory'). "/". $fileName;
             $size = getimagesize($str);
-            //var_dump($size);
+
             $foto->setName($fileName);
             $foto->setSizeX($size[0]);
             $foto->setSizeY($size[1]);

@@ -45,7 +45,6 @@ class ActivitiesController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($activity);
             $em->flush($activity);
@@ -69,7 +68,7 @@ class ActivitiesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
         $deleteForm = $this->createDeleteForm($activity);
-       // var_dump($activity->getFoto());
+
         return $this->render('activities/show.html.twig', array(
             'activity' => $activity,
             'menus' => $menus,

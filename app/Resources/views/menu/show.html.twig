@@ -22,26 +22,62 @@
                 <td>{{ menu.nameen }}</td>
             </tr>
             <tr>
+                <th>Icon</th>
+                <td>{{ menu.icon }}</td>
+            </tr>
+            <tr>
                 <th>Url</th>
                 <td>{{ menu.url }}</td>
             </tr>
             <tr>
-                <th>menu_to</th>
-                <td>{{ menu.menu }}</td>
-            </tr>
-            <tr>
                 <th>Is_activated</th>
                 <td>{% if menu.isactivated %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ menu.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ menu.description }}</td>
+            </tr>
+            <tr>
+                <th>Keywords</th>
+                <td>{{ menu.keywords }}</td>
+            </tr>
+            <tr>
+                <th>Title_ru</th>
+                <td>{{ menu.titleru }}</td>
+            </tr>
+            <tr>
+                <th>Description_ru</th>
+                <td>{{ menu.descriptionru }}</td>
+            </tr>
+            <tr>
+                <th>Keywords_ru</th>
+                <td>{{ menu.keywordsru }}</td>
+            </tr>
+            <tr>
+                <th>Title_en</th>
+                <td>{{ menu.titleen }}</td>
+            </tr>
+            <tr>
+                <th>Description_en</th>
+                <td>{{ menu.descriptionen }}</td>
+            </tr>
+            <tr>
+                <th>Keywords_en</th>
+                <td>{{ menu.keywordsen }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('m_index') }}">Back to the list</a>
+            <a href="{{ path('admin_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('m_edit', { 'id': menu.id }) }}">Edit</a>
+            <a href="{{ path('admin_edit', { 'id': menu.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

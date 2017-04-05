@@ -10,27 +10,47 @@
                 <th>Name</th>
                 <th>Name_ru</th>
                 <th>Name_en</th>
+                <th>Icon</th>
                 <th>Url</th>
                 <th>Is_activated</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Keywords</th>
+                <th>Title_ru</th>
+                <th>Description_ru</th>
+                <th>Keywords_ru</th>
+                <th>Title_en</th>
+                <th>Description_en</th>
+                <th>Keywords_en</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for menu in menus %}
             <tr>
-                <td><a href="{{ path('m_show', { 'id': menu.id }) }}">{{ menu.id }}</a></td>
+                <td><a href="{{ path('admin_show', { 'id': menu.id }) }}">{{ menu.id }}</a></td>
                 <td>{{ menu.name }}</td>
                 <td>{{ menu.nameru }}</td>
                 <td>{{ menu.nameen }}</td>
+                <td>{{ menu.icon }}</td>
                 <td>{{ menu.url }}</td>
                 <td>{% if menu.isactivated %}Yes{% else %}No{% endif %}</td>
+                <td>{{ menu.title }}</td>
+                <td>{{ menu.description }}</td>
+                <td>{{ menu.keywords }}</td>
+                <td>{{ menu.titleru }}</td>
+                <td>{{ menu.descriptionru }}</td>
+                <td>{{ menu.keywordsru }}</td>
+                <td>{{ menu.titleen }}</td>
+                <td>{{ menu.descriptionen }}</td>
+                <td>{{ menu.keywordsen }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('m_show', { 'id': menu.id }) }}">show</a>
+                            <a href="{{ path('admin_show', { 'id': menu.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('m_edit', { 'id': menu.id }) }}">edit</a>
+                            <a href="{{ path('admin_edit', { 'id': menu.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -41,7 +61,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('m_new') }}">Create a new menu</a>
+            <a href="{{ path('admin_new') }}">Create a new menu</a>
         </li>
     </ul>
 {% endblock %}
