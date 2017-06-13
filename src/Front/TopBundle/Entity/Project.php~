@@ -45,14 +45,14 @@ class Project
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $activites;
+    private $activities;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->activites = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -212,13 +212,13 @@ class Project
     /**
      * Add activite
      *
-     * @param \Front\TopBundle\Entity\activities $activite
+     * @param \Front\TopBundle\Entity\activities $activities
      *
      * @return Project
      */
-    public function addActivite(\Front\TopBundle\Entity\activities $activite)
+    public function addActivities(\Front\TopBundle\Entity\activities $activities)
     {
-        $this->activites[] = $activite;
+        $this->activities[] = $activities;
 
         return $this;
     }
@@ -228,9 +228,9 @@ class Project
      *
      * @param \Front\TopBundle\Entity\activities $activite
      */
-    public function removeActivite(\Front\TopBundle\Entity\activities $activite)
+    public function removeActivities(\Front\TopBundle\Entity\activities $activities)
     {
-        $this->activites->removeElement($activite);
+        $this->activities->removeElement($activities);
     }
 
     /**
@@ -238,12 +238,40 @@ class Project
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getActivites()
+    public function getActivities()
     {
-        return $this->activites;
+        return $this->activities;
     }
+
     public function __toString()
     {
+        if(is_null($this->name)) {
+            return 'NULL';
+        }
         return $this->name;
+    }
+
+    /**
+     * Add activity
+     *
+     * @param \Front\TopBundle\Entity\Activities $activity
+     *
+     * @return Project
+     */
+    public function addActivity(\Front\TopBundle\Entity\Activities $activity)
+    {
+        $this->activities[] = $activity;
+
+        return $this;
+    }
+
+    /**
+     * Remove activity
+     *
+     * @param \Front\TopBundle\Entity\Activities $activity
+     */
+    public function removeActivity(\Front\TopBundle\Entity\Activities $activity)
+    {
+        $this->activities->removeElement($activity);
     }
 }

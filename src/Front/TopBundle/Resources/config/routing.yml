@@ -1,11 +1,8 @@
 front_top_Front_proj:
     resource: "@FrontTopBundle/Resources/config/routing/activities.yml"
     prefix:   /
-front_top_Front_foto:
-    resource: "@FrontTopBundle/Resources/config/routing/foto.yml"
-    prefix:   /Front_foto
-front_top_people:
-    resource: "@FrontTopBundle/Resources/config/routing/people.yml"
-    prefix:   /people
+front_top_Front_feedback:
+    resource: "@FrontTopBundle/Resources/config/routing/feedback.yml"
+    prefix:   /feedback
 
 

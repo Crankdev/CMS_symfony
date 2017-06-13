@@ -1,27 +1,67 @@
 <!DOCTYPE html>
-<html>ww
+<html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="author" content="ADMIN">
 
         <title>Website admin</title>
-		<link href="<?php echo $view['assets']->getUrl('css/blog.css') ?>" rel="stylesheet" type="text/css" />
+<style>
+    @media  (min-width:900px){
+        form{
+            width: 50%;
+        }
+    }
 
-		<img src="<?php echo $view['assets']->getUrl('images/logo.png') ?>" />
+    input[type=text],textarea, select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+
+    input[type=submit],input[type=file] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+</style>
+
+		<!--img src="<?php// echo $view['assets']->getUrl('images/logo.png') ?>" /-->
             <!-- Add custom CSS here -->
-            <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-            <link href="http://ivaynberg.github.io/select2/select2-3.4.5/select2.css" rel="stylesheet">
-            <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/css/bootstrap.css')?>" >
-            <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/css/jquery-sortable.css') ?>" >
-            <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/js/fancybox/jquery.fancybox.css') ?>" >
-            <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/js/redactor/redactor.css') ?>" >
-            <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/js/chosen/chosen.css') ?>" >
-            <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/css/sb-admin.css') ?>" >
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="http://ivaynberg.github.io/select2/select2-3.4.5/select2.css" rel="stylesheet">
+
+        <link href="<?php echo $view['assets']->getUrl('style/admin/css/css/my.css') ?>" rel="stylesheet" />
+
+        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/css/bootstrap.css')?>" >
+        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/css/sb-admin.css') ?>" >
+        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/js/fancybox/jquery.fancybox.css') ?>" >
+        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/js/chosen/chosen.css') ?>" >
+        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/admin/css/jquery-sortable.css') ?>" >
+        <link rel="stylesheet" href="<?php //echo $view['assets']->getUrl('style/css/bootstrap.css') ?>" >
+        <link rel="stylesheet" href="<?php //echo $view['assets']->getUrl('style/css/animate.css') ?>" >
+        <link rel="stylesheet" href="<?php //echo $view['assets']->getUrl('style/css/font-awesome.css') ?>" >
+        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('style/css/responsive.css') ?>" >
+        <link rel="stylesheet" href="<?php //echo $view['assets']->getUrl('style/css/custom.css') ?>" >
             <!-- Google Fonts-->
             <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
-            <link href="<?php echo $view['assets']->getUrl('style/admin/css/css/my.css') ?>" rel="stylesheet" />
+
             <!-- JS -->
             <script>
                 var editor = ace.edit("editor");
@@ -79,14 +119,14 @@
                         <li><a href='<?php echo $view['router']->path('admin_index_foto') ?>'>FOTO</a></li>
                         <li><a href='<?php echo $view['router']->path('admin_index_people') ?>'>PEOPLE</a></li>
 
-						<li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Users 2</a>
+						<!--li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Users 2</a>
 							<ul class="dropdown-menu">
 								<li class="active"><a >Users 1</a></li>
 								<li><a>Users 1</a></li>
 								<li><a>Users 1</a></li>
 								<li><a>Users 1</a></li>
 							</ul>
-						</li>
+						</li-->
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</nav>
@@ -98,34 +138,6 @@
 					
 					<?php $view['slots']->output('body') ?>
 
-						<div style="display:none">
-							<div id="edit_dialog">
-								<h2>Enter new value</h2>
-								<div class="form-group input-group">
-									<input type="hidden" id="edit_dialog_id" name="id" class="form-control">
-									<input type="text" id="edit_dialog_input" class="form-control dialog_input">
-									<span class="input-group-btn">
-							<button class="btn btn-default" onclick="saveValue(this)" type="button"><i class="fa fa-save"></i> Save </button>
-						  </span>
-								</div>
-							</div>
-							<div id="pass_dialog">
-								<h2>Set password</h2>
-								<div class="form-group input-group">
-									<input type="hidden" id="pass_dialog_id" name="id" class="form-control">
-									<input type="password" id="pass_dialog_input" class="form-control dialog_input">
-									<span class="input-group-btn">
-							<button class="btn btn-default" onclick="saveValue(this)" type="button"><i class="fa fa-save"></i> Save </button>
-						  </span>
-								</div>
-							</div>
-							<div id="text_dialog">
-								<button type="button" class="btn btn-success btn-lg saveContent disabled"><i class="fa fa-save"></i> Save </button>
-								<div class="texteditor">
-									<textarea id="content" name="content"></textarea>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div><!-- /#page-wrapper -->

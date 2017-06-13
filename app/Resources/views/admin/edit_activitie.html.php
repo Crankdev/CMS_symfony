@@ -3,7 +3,7 @@
 <div class="top_panel">
     <h1>Menus list <small>Добавить или редактировать адреса</small></h1>
     <ol class="breadcrumb">
-        <li><a href="<?php echo $view['router']->path('admin_new_activitie') ?>">Create a new menu</a>
+        <li><a href="<?php echo $view['router']->path('admin_new_activity') ?>">Create a new menu</a>
             <button type="button" class="btn btn-info btn-xs" onclick="newRow()"><i class="fa fa-file"></i> Добавить</button>
             <button type="button" class="btn btn-default btn-xs" onclick="reload()"><i class="fa fa-refresh"></i> Обновить </button>
         </li>
@@ -16,6 +16,9 @@
 			<?php echo $view['form']->widget($edit_form) ?>
 			<input type="submit" value="Edit" />
 			<?php echo $view['form']->end($edit_form) ?>
+            <?php echo $view['form']->start($delete_form) ?>
+            <input type="submit" value="Delete">
+            <?php echo $view['form']->end($delete_form) ?>
         </div>
     </div>
 </div>

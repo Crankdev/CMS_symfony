@@ -3,10 +3,11 @@
 namespace Front\TopBundle\Controller;
 
 use Front\TopBundle\Entity\Activities;
+use Front\TopBundle\Entity\Feedback;
 use Front\TopBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * Activity controller.
  *
@@ -16,46 +17,25 @@ class ActivitiesController extends Controller
 
     /**
      * Lists all activity entities.
-     *
+     * @Route("/{page}", name="Front_proj_index", requirements={"page": "\d+"})
      */
-    public function indexAction()
+    public function indexAction( $_locale  = 'ua' )
     {
         $em = $this->getDoctrine()->getManager();
-        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
-        $activities = $em->getRepository('FrontTopBundle:Activities')->findAll();
-
-
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findBy(array('is_activated'=> 1));
+        $activities = $em->getRepository('FrontTopBundle:Activities')->findBy(array('is_activated'=> 1));
+        $total_activities = count($activities);
+        $this->translate ($menus, $activities,  $_locale);
+        //usort($activities, function($a, $b) {
+          //  return $a->getCreatedAt()->format('U') - $b->getCreatedAt()->format('U');
+        //});
+        $activities = array_reverse($activities);
         return $this->render('activities/index.html.twig', array(
+            'locale' => $_locale,
             'activities' => $activities,
             'menus' => $menus,
-        ));
-    }
-
-    /**
-     * Creates a new activity entity.
-     *
-     */
-    public function newAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
-        $activity = new Activities();
-        $form = $this->createForm('Front\TopBundle\Form\ActivitiesType', $activity);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($activity);
-            $em->flush($activity);
-
-            return $this->redirectToRoute('Front_proj_show', array('id' => $activity->getId()));
-        }
-
-        return $this->render('activities/new.html.twig', array(
-            'activity' => $activity,
-            'form' => $form->createView(),
-            'menus' => $menus,
+            'form' =>  $this->feedback(),
+            'total_activities' => $total_activities,
         ));
     }
 
@@ -63,85 +43,76 @@ class ActivitiesController extends Controller
      * Finds and displays a activity entity.
      *
      */
-    public function showAction(Activities $activity)
+    public function showAction(Activities $activity , $_locale  = 'ua' )
     {
         $em = $this->getDoctrine()->getManager();
-        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
-        $deleteForm = $this->createDeleteForm($activity);
-
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findBy(array('is_activated'=> 1));
+        $array[0]=$activity;
+        $this->translate ($menus, $array,  $_locale);
         return $this->render('activities/show.html.twig', array(
+            'locale' => $_locale,
             'activity' => $activity,
+            'form' =>  $this->feedback(),
             'menus' => $menus,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
-    public function showpAction(Project $project)
+
+    public function showpAction(Project $project,  $_locale  = 'ua' )
     {
         $em = $this->getDoctrine()->getManager();
-        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
-
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findBy(array('is_activated'=> 1));
+        $this->translate ($menus , $project->getActivities(), $_locale, $project);
         return $this->render('activities/showp.html.twig', array(
+            'locale' => $_locale,
             'project' => $project,
+            'form' =>  $this->feedback(),
             'menus' => $menus,
         ));
     }
-    /**
-     * Displays a form to edit an existing activity entity.
-     *
-     */
-    public function editAction(Request $request, Activities $activity)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
-        $deleteForm = $this->createDeleteForm($activity);
-        $editForm = $this->createForm('Front\TopBundle\Form\ActivitiesType', $activity);
-        $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('Front_proj_edit', array('id' => $activity->getId()));
-        }
-
-        return $this->render('activities/edit.html.twig', array(
-            'activity' => $activity,
-            'menus' => $menus,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+    private function feedback(){
+        $feedback = new Feedback();
+        $form = $this->createForm('Front\TopBundle\Form\FeedbackType', $feedback, array(
+            'action' => $this->generateUrl('feedback_new'),
+            'method' => 'post',
         ));
+        return $form->createView();
     }
 
-    /**
-     * Deletes a activity entity.
-     *
-     */
-    public function deleteAction(Request $request, Activities $activity)
-    {
-        $form = $this->createDeleteForm($activity);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($activity);
-            $em->flush($activity);
+    private function  translate ($menus, $activitys, $_locale  = 'ua', $project = null) {
+        if ($_locale == 'ru') {
+            if($project != null) {
+                $project->setName($project->getNameru());
+                $project->setAbout($project->getAboutru());
+            }
+            foreach ($activitys as $activity) {
+                foreach ($menus as $menu)$menu->setName($menu->getNameru());
+                $activity->setName($activity->getNameru());
+                $activity->setAbout($activity->getAboutru());
+                $activity->setNeeds($activity->getNeedsRu());
+                $activity->getProject()->setName($activity->getProject()->getNameRu());
+                foreach ($activity->getPeople() as $person){
+                    $person->setName($person->getNameRu());
+                    $person->setWho($person->getWhoRu());
+                }
+            }
         }
-
-        return $this->redirectToRoute('Front_proj_index');
-    }
-
-    /**
-     * Creates a form to delete a activity entity.
-     *
-     * @param Activities $activity The activity entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Activities $activity)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('Front_proj_delete', array('id' => $activity->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        if ($_locale == 'en') {
+            if($project != null) {
+                $project->setName($project->getNameen());
+                $project->setAbout($project->getAbouten());
+            }
+            foreach ($activitys as $activity) {
+                foreach ($menus as $menu)$menu->setName($menu->getNameen());
+                $activity->setName($activity->getNameen());
+                $activity->setAbout($activity->getAbouten());
+                $activity->setNeeds($activity->getNeedsEn());
+                $activity->getProject()->setName($activity->getProject()->getNameEn());
+                foreach ($activity->getPeople() as $person){
+                    $person->setName($person->getNameEn());
+                    $person->setWho($person->getWhoEn());
+                }
+            }
+        }
     }
 }

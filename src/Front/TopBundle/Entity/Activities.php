@@ -308,7 +308,7 @@ class Activities
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updated_at = new \DateTime();;
+        $this->updated_at = new \DateTime();
 
         return $this;
     }
@@ -546,4 +546,5 @@ class Activities
         }
         return $this->name;
     }
+
 }

@@ -5,6 +5,7 @@ namespace Front\TopBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ActivitiesType extends AbstractType
 {
@@ -18,14 +19,23 @@ class ActivitiesType extends AbstractType
             ->add('name')
             ->add('name_ru')
             ->add('name_en')
-            ->add('about')
-            ->add('about_ru')
-            ->add('about_en')
-            ->add('url')
+            ->add('about', TextareaType::class , array(
+                'required'   => false))
+            ->add('about_ru', TextareaType::class , array(
+                'required'   => false))
+            ->add('about_en', TextareaType::class , array(
+                'required'   => false))
+            ->add('needs', TextareaType::class , array(
+                'required'   => false))
+            ->add('needs_ru', TextareaType::class , array(
+                'required'   => false))
+            ->add('needs_en', TextareaType::class , array(
+                'required'   => false))
+            //->add('url')
             ->add('is_activated')
             //->add('created_at')
             //->add('updated_at')
-            ->add('foto')
+            //->add('foto')
             ->add('project')
         ;
     }

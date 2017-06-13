@@ -16,7 +16,7 @@ class FotoType extends AbstractType
     {
         $builder
             //->add('id')
-            ->add('name', FileType::class, array('label' => 'Img '))
+            ->add('name', FileType::class, array('label' => 'Img ', 'multiple' => true))
             //->add('size_x')
             //->add('size_y')
             ->add('activities')

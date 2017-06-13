@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% for activity in activities %}
+
     <!-- Blog Post -->
     <div class="blog-post padding-bottom-20">
         <!-- Blog Item Header -->
         <div class="blog-item-header">
             <!-- Title -->
             <h2>
-                <a href="{{ path('Front_proj_show', { 'id': activity.id }) }}"></a>
+                <a href="{{ path('Front_proj_show', { 'url': activity.url }) }}">
                     {{ activity.name }}</a>
             </h2>
             <div class="clearfix"></div>
             <!-- End Title -->
             <!-- Date -->
             <div class="blog-post-date">
-                {% if activity.updatedat %}{{ activity.updatedat|date('d/m/Y') }}
-                {% else %}{{ activity.createdat|date('d/m/Y') }}
+                {% if activity.updatedat %}{{ activity.updatedat|date("F jS  Y")  }}
+                {% else %}{{ activity.createdat|date("F jS  Y") }}
                 {% endif %}
             </div>
             <!-- End Date -->
@@ -32,9 +33,7 @@
             <!-- Tags -->
             <div class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
                 <i class="fa fa-tag color-gray-light"></i>
-                <a href="#">Діти</a>,
-                <a href="#">Служіння</a>,
-                <a href="#"></a>
+                <a href="{{ path('Front_proj2_show', { 'id': activity.project.id }) }}">{{ activity.project }}</a>
             </div>
             <!-- End Tags -->
         </div>
@@ -44,17 +43,17 @@
             <div class="clearfix"></div>
             <div class="blog-post-body row margin-top-15">
                 <div class="col-md-5">
-                        <img class="margin-bottom-20" src="{{ asset('uploads/imeges/') ~activity.foto[0].name }}" alt="image">
+                    {% if activity.foto is empty  %}
+                        <img class="margin-bottom-20" src="{{ asset('uploads/imeges/') ~'nophoto.jpg' }}" alt="image">
+                    {% else %}
+                     <img class="margin-bottom-20" src="{{ asset('uploads/imeges/') ~activity.foto[0].name }}" alt="image">
+                    {% endif %}
                 </div>
-                <div class="col-md-7">
-                    <p>{{ activity.about }}</p>
+                <div class="col-md-7 ">
+                    <p style="text-indent: 20px">{{ activity.about|slice(0,500) }}{% if activity.about|length > 500 %}.....{% endif %}</p>
                     <!-- Read More -->
-                    <a href="{{ path('Front_proj_show', { 'id': activity.id }) }}" class="btn btn-primary">
+                    <a href="{{ path('Front_proj_show', { 'url': activity.url }) }}" class="btn btn-primary">
                         Більше
-                        <i class="icon-chevron-right readmore-icon"></i>
-                    </a>
-                    <a href="{{ path('Front_proj_edit', { 'id': activity.id }) }}" class="btn btn-primary">
-                        edit
                         <i class="icon-chevron-right readmore-icon"></i>
                     </a>
                     <!-- End Read More -->
@@ -66,11 +65,6 @@
 
     <!-- End Blog Item -->
     {% endfor %}
-    <ul>
-        <li>
-            <a href="{{ path('Front_proj_new') }}">Create a new activity</a>
-        </li>
-    </ul>
     <!-- Pagination -->
     <ul class="pagination">
         <li>
@@ -95,5 +89,6 @@
             <a href="#">&raquo;</a>
         </li>
     </ul>
+
     <!-- End Pagination -->
 {% endblock %}

@@ -1,10 +1,10 @@
 <?php $view->extend('::admin.html.php') ?>
 <?php $view['slots']->start('body') ?>
 <div class="top_panel">
-    <h1>Menus list <small>Добавить или редактировать адреса</small></h1>
+    <h1>Project list <small>Редактировать проект</small></h1>
     <ol class="breadcrumb">
-        <li><a href="<?php echo $view['router']->path('admin_new_project') ?>">Create a new menu</a>
-            <button type="button" class="btn btn-info btn-xs" onclick="newRow()"><i class="fa fa-file"></i> Добавить</button>
+        <li>
+            <a class="btn btn-info btn-xs"  href="<?php echo $view['router']->path('admin_new_project') ?>"><i class="fa fa-file"></i> Добавить project</a>
             <button type="button" class="btn btn-default btn-xs" onclick="reload()"><i class="fa fa-refresh"></i> Обновить </button>
         </li>
     </ol>
@@ -16,6 +16,9 @@
 			<?php echo $view['form']->widget($edit_form) ?>
 			<input type="submit" value="Edit" />
 			<?php echo $view['form']->end($edit_form) ?>
+            <?php echo $view['form']->start($delete_form) ?>
+            <input type="submit" value="Delete">
+            <?php echo $view['form']->end($delete_form) ?>
         </div>
     </div>
 </div>

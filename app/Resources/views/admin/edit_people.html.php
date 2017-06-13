@@ -16,6 +16,9 @@
 			<?php echo $view['form']->widget($edit_form) ?>
 			<input type="submit" value="Edit" />
 			<?php echo $view['form']->end($edit_form) ?>
+            <?php echo $view['form']->start($delete_form) ?>
+            <input type="submit" value="Delete">
+            <?php echo $view['form']->end($delete_form) ?>
         </div>
     </div>
 </div>

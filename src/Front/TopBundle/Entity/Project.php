@@ -250,4 +250,28 @@ class Project
         }
         return $this->name;
     }
+
+    /**
+     * Add activity
+     *
+     * @param \Front\TopBundle\Entity\Activities $activity
+     *
+     * @return Project
+     */
+    public function addActivity(\Front\TopBundle\Entity\Activities $activity)
+    {
+        $this->activities[] = $activity;
+
+        return $this;
+    }
+
+    /**
+     * Remove activity
+     *
+     * @param \Front\TopBundle\Entity\Activities $activity
+     */
+    public function removeActivity(\Front\TopBundle\Entity\Activities $activity)
+    {
+        $this->activities->removeElement($activity);
+    }
 }

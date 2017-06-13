@@ -1,53 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
     <div id="content">
         <div class="container background-white">
             <div class="row margin-vert-30">
                 <!-- Main Column -->
-                    <div class="blog-post">
+                    <div-- class="blog-post">
                         <div class="blog-item-header">
                             <h2>
-                                <a href="#">
-                                    {{ listit.name }}
-                                </a>
+                                {{ listit.name }}
                             </h2>
                             <!-- Date -->
-                            <div class="blog-post-date">
+                            <!--div class="blog-post-date">
                                 <a href="#">
-                                    {% if listit.updatedat %}{{ listit.updatedat|date('Y-m-d') }}
+                                  {#  {% if listit.updatedat %}{{ listit.updatedat|date('Y-m-d') }}
                                     {% else %}{{ listit.createdat|date('Y-m-d') }}
-                                    {% endif %}</a>
-                            </div>
+                                    {% endif %}#}</a>
+                            </div-->
                             <!-- End Date -->
                         </div>
-                        <div class="blog-post-details">
+                        <!--div class="blog-post-details">
                             <!-- Author Name -->
-                            <div class="blog-post-details-item blog-post-details-item-left user-icon">
+                            <!--div class="blog-post-details-item blog-post-details-item-left user-icon">
                                 <i class="fa fa-user color-gray-light"></i>
                                 <a href="#">Admin</a>
-                            </div>
+                            </div-->
                             <!-- End Author Name -->
                             <!-- Tags -->
-                            <div class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
+                            <!--div class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
                                 <i class="fa fa-tag color-gray-light"></i>
                                 <a href="#">PHP</a>,
                                 <a href="#">Javascript</a>,
                                 <a href="#">CoffeeScript</a>
-                            </div>
+                            </div-->
                             <!-- End Tags -->
-                        </div>
+                        <!--/div-->
                         <div class="blog-item">
                             <div class="clearfix"></div>
                             <div class="blog-post-body row margin-top-15">
-                                <div class="col-md-5">
-                                    <img class="margin-bottom-20" src="{{ asset('uploads/imeges_list/') ~listit.foto }}" alt="image1">
-                                </div>
+                                {% if listit.locales  is empty and listit.foto  is empty %}
                                 <div class="col-md-7">
+                                {% else %}
+                                <div class="col-md-7">
+                                    {% if listit.locales %} <iframe src="{{ listit.locales }}" width="100%" height="100%" frameborder="0" style="min-height:250px;border:0" allowfullscreen></iframe>
+                                    {% else %}<img class="margin-bottom-20" src="{{ asset('uploads/imeges_list/') ~listit.foto }}" alt="images">
+                                    {% endif %}
                                 </div>
-                                <div class="col-md-12">
-                                    <p>{{ listit.about }}</p>
+                                <div class="col-md-5">
+                                {% endif %}
+                                    {% autoescape false %}
+                                    {{ listit.about }}
+                                    {% endautoescape %}
+                                </div>
+                                <!--div class="col-md-12">
                                     <blockquote class="primary">
                                         <p>
                                             <em>"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."</em>
@@ -62,31 +67,15 @@
                                         aliquyam erat, sed diam voluptua.</p>
                                     <p>Ut summo deserunt sit, quaeque hendrerit assentior cu mei. Sale electram nam ut. Putent perpetua reformidans ex vix, libris nostrud tractatos cu sit, est porro omnes nominati eu. Cu nullam similique complectitur
                                         eam. Viris phaedrum ullamcorper id eos.</p>
-                                </div>
+                                </div-->
                             </div>
                                 <!-- End About the Author -->
-                            </div>
                         </div>
                     </div>
+            </div>
                     <!-- End Blog Post -->
-                </div>
-                <!-- End Main Column -->
-                </div>
         </div>
+                <!-- End Main Column -->
     </div>
     <!-- === END CONTENT === -->
-
-    <ul>
-        <li>
-            <a href="{{ path('l_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('l_edit', { 'id': listit.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

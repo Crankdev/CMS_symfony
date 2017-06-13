@@ -21,12 +21,17 @@ class AdminController extends Controller
      * Lists all menu entities.
      *
      */
+    public function indexAction()
+    {
+
+        return $this->render('admin/index.html.php', array(
+
+        ));
+    }
     public function index_menuAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
-
         return $this->render('admin/index_menu.html.php', array(
             'menus' => $menus,
         ));
@@ -38,33 +43,21 @@ class AdminController extends Controller
     public function new_menuAction(Request $request)
     {
         $menu = new Menu();
-        $form = $this->createForm('AdminBundle\Form\MenuType', $menu);
+        $form = $this->createForm('Front\MenuBundle\Form\MenuType', $menu);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $menu->setUrl($this->TransUrl($menu->getName()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($menu);
             $em->flush($menu);
 
-            return $this->redirectToRoute('admin_show_menu', array('id' => $menu->getId()));
+            return $this->redirectToRoute('admin_edit_menu', array('id' => $menu->getId()));
         }
 
         return $this->render('admin/new_menu.html.php', array(
             'menu' => $menu,
             'form' => $form->createView(),
-        ));
-    }
-    /**
-     * Finds and displays a menu entity.
-     *
-     */
-    public function show_menuAction(Menu $menu)
-    {
-        $deleteForm = $this->createDeleteFormMenu($menu);
-
-        return $this->render('admin/show_menu.html.php', array(
-            'menu' => $menu,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -75,15 +68,13 @@ class AdminController extends Controller
     public function edit_menuAction(Request $request, Menu $menu)
     {
         $deleteForm = $this->createDeleteFormMenu($menu);
-        $editForm = $this->createForm('AdminBundle\Form\MenuType', $menu);
+        $editForm = $this->createForm('Front\MenuBundle\Form\MenuType', $menu);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('admin_edit_menu', array('id' => $menu->getId()));
         }
-
         return $this->render('admin/edit_menu.html.php', array(
             'menu' => $menu,
             'edit_form' => $editForm->createView(),
@@ -105,7 +96,7 @@ class AdminController extends Controller
             $em->flush($menu);
         }
 
-        return $this->redirectToRoute('admin_index');
+        return $this->redirectToRoute('admin_index_menu');
     }
     /**
      * Creates a form to delete a menu entity.
@@ -150,43 +141,25 @@ class AdminController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-
             $file = $people->getFoto();
-
             // Generate a unique name for the file before saving it
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
             // Move the file to the directory where brochures are stored
             $file->move(
                  $this->getParameter('foto_people_directory'),
                  $fileName
             );
-
             $people->setFoto($fileName);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($people);
             $em->flush($people);
 
-            return $this->redirectToRoute('admin_show_people', array('id' => $people->getId()));
+            return $this->redirectToRoute('admin_edit_people', array('id' => $people->getId()));
         }
-
         return $this->render('admin/new_people.html.php', array(
             'person' => $people,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a person entity.
-     *
-     */
-    public function show_peopleAction(People $people)
-    {
-        $deleteForm = $this->createDeleteFormPeople($people);
-        return $this->render('admin/show_people.html.php', array(
-            'person' => $people,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -201,7 +174,6 @@ class AdminController extends Controller
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('admin_edit_people', array('id' => $people->getId()));
         }
 
@@ -246,10 +218,8 @@ class AdminController extends Controller
         ;
     }
 	
-	
-	
-	    /**
-     * Lists all activity entities.
+	 /**
+     * Lists all foto entities.
      *
      */
     public function index_fotoAction()
@@ -263,7 +233,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Creates a new activity entity.
+     * Creates a new foto entity.
      *
      */
     public function new_fotoAction(Request $request)
@@ -272,9 +242,89 @@ class AdminController extends Controller
         $form = $this->createForm('Front\TopBundle\Form\FotoType', $foto);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
-
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($foto->getName() as $fotos){
+                $foto_2 = new Foto();
+                $file = $fotos;
+                //var_dump($fotos);
+                // Generate a unique name for the file before saving it
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                $file->move(
+                    $this->getParameter('imeges_directory'),
+                    $fileName
+                );
+                $str=$this->getParameter('imeges_directory'). "/". $fileName;
+                $size = getimagesize($str);
+
+                $foto_2->setName($fileName);
+                $foto_2->setSizeX($size[0]);
+                $foto_2->setSizeY($size[1]);
+                $foto_2->setActivities($foto->getActivities());
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($foto_2);
+                $em->flush($foto_2);
+            }
+           /* $file = $fotos->getName();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('imeges_directory'),
+                $fileName
+            );
+            $str=$this->getParameter('imeges_directory'). "/". $fileName;
+            $size = getimagesize($str);
+
+            $foto->setName($fileName);
+            $foto->setSizeX($size[0]);
+            $foto->setSizeY($size[1]);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($foto);
+            $em->flush($foto);
+           */
+
+            return $this->redirectToRoute('admin_index_foto');
+        }
+
+        return $this->render('admin/new_foto.html.php', array(
+            'foto' => $foto,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a foto entity.
+     *
+     */
+    public function show_fotoAction(Foto $foto)
+    {
+        $deleteForm = $this->createDeleteFormFoto($foto);
+
+        return $this->render('admin/show_foto.html.php', array(
+            'foto' => $foto,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing fto entity.
+     *
+     */
+    public function edit_fotoAction(Request $request, Foto $foto)
+    {
+        $deleteForm = $this->createDeleteFormFoto($foto);
+        $fotoname = $foto->getName();
+        $foto->setName('');
+        $editForm = $this->createForm('Front\TopBundle\Form\UnoFotoType', $foto);
+
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
             $file = $foto->getName();
 
             // Generate a unique name for the file before saving it
@@ -296,47 +346,11 @@ class AdminController extends Controller
             $em->persist($foto);
             $em->flush($foto);
 
-            return $this->redirectToRoute('admin_show_foto', array('id' => $foto->getId()));
+            return $this->redirectToRoute('admin_edit_foto', array('id' => $foto->getId()));
         }
-
-        return $this->render('admin/new_foto.html.php', array(
-            'foto' => $foto,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a activity entity.
-     *
-     */
-    public function show_fotoAction(Foto $foto)
-    {
-        $deleteForm = $this->createDeleteFormFoto($foto);
-        $em = $this->getDoctrine()->getManager();
-        return $this->render('admin/show_foto.html.php', array(
-            'foto' => $foto,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing activity entity.
-     *
-     */
-    public function edit_fotoAction(Request $request, Foto $foto)
-    {
-        $deleteForm = $this->createDeleteFormFoto($foto);
-        $editForm = $this->createForm('Front\TopBundle\Form\FotoType', $foto);
-        $editForm->handleRequest($request);
-        $em = $this->getDoctrine()->getManager();
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('admin_show_foto', array('id' => $foto->getId()));
-        }
-
         return $this->render('admin/edit_foto.html.php', array(
             'foto' => $foto,
+            'fotoname' => $fotoname,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -357,7 +371,7 @@ class AdminController extends Controller
             $em->flush($foto);
         }
 
-        return $this->redirectToRoute('admin_show_foto');
+        return $this->redirectToRoute('admin_index_foto');
     }
 
     /**
@@ -370,7 +384,7 @@ class AdminController extends Controller
     private function createDeleteFormFoto(Foto $foto)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('Front_foto_index', array('id' => $foto->getId())))
+            ->setAction($this->generateUrl('admin_delete_foto', array('id' => $foto->getId())))
             ->setMethod('DELETE')
             ->getForm()
             ;
@@ -382,11 +396,31 @@ class AdminController extends Controller
      * Lists all activity entities.
      *
      */
-    public function index_activityAction()
+    public function index_activityAction( )
     {
+       /*$message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('dimadev13@gmail.com')
+            ->setTo('dimadev13@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'admin/email.txt.twig',
+                    array('name' => 'lllll bill')
+                )
+            )
+        ;
+        $transport = \Swift_SmtpTransport::newInstance()
+            ->setUsername('dimadev13@gmail.com')
+            ->setPassword('gear1285')->setHost('smtp.gmail.com')
+            ->setPort(465)->setEncryption('ssl');
+
+        $mailer = \Swift_Mailer::newInstance($transport);
+
+        //var_dump($mailer->send($message));
+        echo  $this->get('mailer')->send($message);
+        die(1);*/
         $em = $this->getDoctrine()->getManager();
         $activities = $em->getRepository('FrontTopBundle:Activities')->findAll();
-
 
         return $this->render('admin/index_activity.html.php', array(
             'activities' => $activities,
@@ -404,12 +438,12 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $activity->setUrl($this->TransUrl($activity->getName()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($activity);
             $em->flush($activity);
 
-            return $this->redirectToRoute('admin_show_activity', array('id' => $activity->getId()));
+            return $this->redirectToRoute('admin_edit_activity', array('id' => $activity->getId()));
         }
 
         return $this->render('admin/new_activity.html.php', array(
@@ -418,20 +452,6 @@ class AdminController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a activity entity.
-     *
-     */
-    public function show_activityAction(Activities $activity)
-    {
-        $deleteForm = $this->createDeleteFormActivities($activity);
-
-        return $this->render('admin/show_activity.html.php', array(
-            'activity' => $activity,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-	
     /**
      * Displays a form to edit an existing activity entity.
      *
@@ -497,7 +517,6 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('FrontTopBundle:Project')->findAll();
 
-
         return $this->render('admin/index_project.html.php', array(
             'projects' => $projects,
         ));
@@ -519,7 +538,7 @@ class AdminController extends Controller
             $em->persist($project);
             $em->flush($project);
 
-            return $this->redirectToRoute('admin_show_project', array('id' => $project->getId()));
+            return $this->redirectToRoute('admin_edit_project', array('id' => $project->getId()));
         }
 
         return $this->render('admin/new_project.html.php', array(
@@ -528,20 +547,6 @@ class AdminController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a project entity.
-     *
-     */
-    public function show_projectAction(Project $project)
-    {
-        $deleteForm = $this->createDeleteFormActivities($project);
-
-        return $this->render('admin/show_project.html.php', array(
-            'project' => $project,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-	
     /**
      * Displays a form to edit an existing project entity.
      *
@@ -619,49 +624,49 @@ class AdminController extends Controller
      */
     public function new_listitAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
         $listit = new Listit();
+        $Menu = new Menu();
         $form = $this->createForm('Front\MenuBundle\Form\ListitType', $listit);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $listit->setUrl($this->TransUrl($listit->getName()));
+            if($listit->getMenu()==null) {
+                $Menu->setName($listit->getName());
+                $Menu->setNameRu($listit->getNameRu());
+                $Menu->setNameEn($listit->getNameEn());
+                $Menu->setUrl($listit->getUrl());
+                $Menu->setIsActivated($listit->getIsActivated());
+            }
+            if ($listit->getFoto()) {
+                $file = $listit->getFoto();
 
-            $file = $listit->getFoto();
+                // Generate a unique name for the file before saving it
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
-            // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-            // Move the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('imeges_list_directory'),
-                $fileName
-            );
-            $listit->setFoto($fileName);
-
+                // Move the file to the directory where brochures are stored
+                $file->move(
+                    $this->getParameter('imeges_list_directory'),
+                    $fileName
+                );
+                $listit->setFoto($fileName);
+            }
             $em = $this->getDoctrine()->getManager();
+            if($listit->getMenu()==null) {
+                $em->persist($Menu);
+                $em->flush($Menu);
+                $listit->setMenu($Menu);
+            }
             $em->persist($listit);
             $em->flush($listit);
 
-            return $this->redirectToRoute('admin_show_listit', array('url' => $listit->getUrl()));
+            return $this->redirectToRoute('admin_edit_listit', array('id' => $listit->getId()));
         }
 
         return $this->render('admin/new_listit.html.php', array(
             'listit' => $listit,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a listit entity.
-     *
-     */
-    public function show_listitAction(Listit $listit)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $deleteForm = $this->createDeleteFormListit($listit);
-        return $this->render('asmin/show_listit.html.php', array(
-            'listit' => $listit,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -672,20 +677,28 @@ class AdminController extends Controller
     public function edit_listitAction(Request $request, Listit $listit)
     {
         $deleteForm = $this->createDeleteFormListit($listit);
+
         $editForm = $this->createForm('Front\MenuBundle\Form\ListitType', $listit);
+        $fotoname = $listit->getFoto();
+        $listit->setFoto('');
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $file = $listit->getFoto();
+            if ($listit->getFoto()) {
+                $file = $listit->getFoto();
 
-            // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                // Generate a unique name for the file before saving it
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
-            // Move the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('imeges_list_directory'),
-                $fileName
-            );
-            $listit->setFoto($fileName);
+                // Move the file to the directory where brochures are stored
+                $file->move(
+                    $this->getParameter('imeges_list_directory'),
+                    $fileName
+                );
+                $listit->setFoto($fileName);
+            }
+            else {
+                $listit->setFoto($fotoname);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_edit_listit', array('id' => $listit->getId()));
@@ -693,6 +706,7 @@ class AdminController extends Controller
 
         return $this->render('admin/edit_listit.html.php', array(
             'listit' => $listit,
+            'fotoname'=> $fotoname,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -730,5 +744,111 @@ class AdminController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    public function TransUrl($str)
+    {
+        $tr = array(
+            "А"=>"a",
+            "Б"=>"b",
+            "В"=>"v",
+            "Г"=>"g",
+            "Д"=>"d",
+            "Е"=>"e",
+            "Ё"=>"e",
+            "Ж"=>"j",
+            "З"=>"z",
+            "И"=>"i",
+            "Й"=>"y",
+            "К"=>"k",
+            "Л"=>"l",
+            "М"=>"m",
+            "Н"=>"n",
+            "О"=>"o",
+            "П"=>"p",
+            "Р"=>"r",
+            "С"=>"s",
+            "Т"=>"t",
+            "У"=>"u",
+            "Ф"=>"f",
+            "Х"=>"h",
+            "Ц"=>"ts",
+            "Ч"=>"ch",
+            "Ш"=>"sh",
+            "Щ"=>"sch",
+            "Ъ"=>"",
+            "Ы"=>"i",
+            "І"=>"i",
+            "і"=>"i",
+            "Ь"=>"j",
+            "Э"=>"e",
+            "Ю"=>"yu",
+            "Я"=>"ya",
+            "а"=>"a",
+            "б"=>"b",
+            "в"=>"v",
+            "г"=>"g",
+            "д"=>"d",
+            "е"=>"e",
+            "ё"=>"e",
+            "ж"=>"j",
+            "з"=>"z",
+            "и"=>"i",
+            "й"=>"y",
+            "к"=>"k",
+            "л"=>"l",
+            "м"=>"m",
+            "н"=>"n",
+            "о"=>"o",
+            "п"=>"p",
+            "р"=>"r",
+            "с"=>"s",
+            "т"=>"t",
+            "у"=>"u",
+            "ф"=>"f",
+            "х"=>"h",
+            "ц"=>"ts",
+            "ч"=>"ch",
+            "ш"=>"sh",
+            "щ"=>"sch",
+            "ъ"=>"y",
+            "ы"=>"i",
+            "ь"=>"j",
+            "э"=>"e",
+            "ю"=>"yu",
+            "я"=>"ya",
+            " "=> "_",
+            "."=> "",
+            "/"=> "_",
+            ","=>"_",
+            "-"=>"_",
+            "("=>"",
+            ")"=>"",
+            "["=>"",
+            "]"=>"",
+            "="=>"_",
+            "+"=>"_",
+            "*"=>"",
+            "?"=>"",
+            "\""=>"",
+            "'"=>"",
+            "&"=>"",
+            "%"=>"",
+            "#"=>"",
+            "@"=>"",
+            "!"=>"",
+            ";"=>"",
+            "№"=>"",
+            "^"=>"",
+            ":"=>"",
+            "~"=>"",
+            "\\"=>"",
+            "—"=>"",
+            "|"=>"",
+            "«"=>"",
+            "»"=>"",
+            "–"=>"",
+
+        );
+        return strtr($str,$tr);
     }
 }

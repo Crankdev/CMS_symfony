@@ -1,11 +1,10 @@
+admin_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:Admin:index" }
+    methods:  [GET, POST]
 admin_index_menu:
     path:     /menu/
     defaults: { _controller: "AdminBundle:Admin:index_menu" }
-    methods:  GET
-
-admin_show_menu:
-    path:     /menu/{id}/show
-    defaults: { _controller: "AdminBundle:Admin:show_menu" }
     methods:  GET
 
 admin_new_menu:
@@ -28,11 +27,6 @@ admin_index_foto:
     defaults: { _controller: "AdminBundle:Admin:index_foto" }
     methods:  GET
 
-admin_show_foto:
-    path:     /foto/{id}/show
-    defaults: { _controller: "AdminBundle:Admin:show_foto" }
-    methods:  GET
-
 admin_new_foto:
     path:     /foto/new
     defaults: { _controller: "AdminBundle:Admin:new_foto" }
@@ -51,11 +45,6 @@ admin_delete_foto:
 admin_index_people:
     path:     /people/
     defaults: { _controller: "AdminBundle:Admin:index_people" }
-    methods:  GET
-
-admin_show_people:
-    path:     /people/{id}/show
-    defaults: { _controller: "AdminBundle:Admin:show_people" }
     methods:  GET
 
 admin_new_people:
@@ -78,11 +67,6 @@ admin_index_listit:
     defaults: { _controller: "AdminBundle:Admin:index_listit" }
     methods:  GET
 
-admin_show_listit:
-    path:     /listit/{id}/show
-    defaults: { _controller: "AdminBundle:Admin:show_listit" }
-    methods:  GET
-
 admin_new_listit:
     path:     /listit/new
     defaults: { _controller: "AdminBundle:Admin:new_listit" }
@@ -103,11 +87,6 @@ admin_index_activity:
     defaults: { _controller: "AdminBundle:Admin:index_activity" }
     methods:  GET
 
-admin_show_activity:
-    path:     /activity/{id}/show
-    defaults: { _controller: "AdminBundle:Admin:show_activity" }
-    methods:  GET
-
 admin_new_activity:
     path:     /activity/new
     defaults: { _controller: "AdminBundle:Admin:new_activity" }
@@ -126,11 +105,6 @@ admin_delete_activity:
 admin_index_project:
     path:     /project/
     defaults: { _controller: "AdminBundle:Admin:index_project" }
-    methods:  GET
-
-admin_show_project:
-    path:     /project/{id}/show
-    defaults: { _controller: "AdminBundle:Admin:show_project" }
     methods:  GET
 
 admin_new_project:

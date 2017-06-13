@@ -2,17 +2,23 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Wellcom!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}siladuha.com.ua| {% endblock %}</title>
         {% block stylesheets %}
+            <style>
+                p {
+                    text-indent: 25px; /* Отступ первой строки в пикселах */
+                }
+            </style>
             <link rel="stylesheet" href="{{ asset('style/css/bootstrap.css') }}" >
             <link rel="stylesheet" href="{{ asset('style/css/animate.css') }}" >
             <link rel="stylesheet" href="{{ asset('style/css/font-awesome.css') }}" >
             <link rel="stylesheet" href="{{ asset('style/css/nexus.css') }}" >
             <link rel="stylesheet" href="{{ asset('style/css/responsive.css') }}" >
             <link rel="stylesheet" href="{{ asset('style/css/custom.css') }}" >
+            <link rel="stylesheet" href="{{ asset('style/css/style.css') }}" >
             <!-- Google Fonts-->
             <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
-            <link href="{{ asset('css/blog.css') }}" rel="stylesheet" />
         {% endblock %}
         {% block javascript %}
             <!-- JS -->
@@ -73,7 +79,7 @@
                             <ul id="hornavmenu" class="nav navbar-nav">
                                 {% for menu in menus %}
                                     <li>
-                                        <a href="http://localhost/CMS_symfony/web/app_dev.php/{{ menu.url }}" class="{{  menu.icon }} ">{{ menu.name }}</a> <!- active -!>
+                                        <a href="http://siladuha.local/app_dev.php/{{ menu.url }}{% if menu.url  %}/{% endif %}{{ locale }}/" class="{{  menu.icon }}{% if false %} active{% endif %}">{{ menu.name }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -107,7 +113,6 @@
                     <!-- Main Column -->
                     <div class="col-md-12">
                         {% block body %}{% endblock %}
-                        {% block javascripts %}{% endblock %}
 
                     </div>
                     <!-- End Main Column -->
@@ -121,33 +126,45 @@
                 <div class="row">
                     <!-- Disclaimer -->
                     <div class="col-md-4">
-                        <h3 class="class margin-bottom-10">Disclaimer</h3>
-                        <p>All stock images on this template demo are for presentation purposes only, intended to represent a live site and are not included with the template or in any of the Joomla51 club membership plans.</p>
-                        <p>Most of the images used here are available from
-                            <a href="http://www.shutterstock.com/" target="_blank">shutterstock.com</a>. Links are provided if you wish to purchase them from their copyright owners.</p>
+                        <h3 class="class margin-bottom-10">Опис</h3>
+                        <p>Черкаська обласна благодійна організація інвалідів була заснована в 2011 році і здійснюе свою діяльність на території Черкаської області. Правовою нормою організації є благодійний фонд.</p>
+                        <!--p>Most of the images used here are available from
+                            <a href="http://www.shutterstock.com/" target="_blank">shutterstock.com</a>. Links are provided if you wish to purchase them from their copyright owners.</p-->
                     </div>
                     <!-- End Disclaimer -->
                     <!-- Contact Details -->
                     <div class="col-md-4 margin-bottom-20">
-                        <h3 class="margin-bottom-10">Contact Details</h3>
-                        <p>
-                            <span class="fa-phone">Telephone:</span>1-800-123-4567
+                        <h3 class="margin-bottom-10">Контакти</h3>
+
+                            <span class="fa-phone"></span>+38 (0472) 73-15-30
                             <br>
-                            <span class="fa-envelope">Email:</span>
-                            <a href="mailto:info@example.com">info@example.com</a>
+                            <span class="fa-phone"></span>+38 (093) 195-95-57
                             <br>
-                            <span class="fa-link">Website:</span>
-                            <a href="http://www.example.com">www.example.com</a>
-                        </p>
-                        <p>The Dunes, Top Road,
+                            <span class="fa-phone"></span>+38 (067) 116-99-96
+                            <br>
+                            <span class="fa-envelope"></span>
+                            <a href="mailto:info@example.com">siladuha@siladuha.com.ua</a>
+                            <br>
+                            <span class="fa-link"></span>
+                            <a href="http://www.siladuha.local{{ locale }}">www.siladuha.com.ua</a>
+                        <br>
+                        <!--p>The Dunes, Top Road,
                             <br>Strandhill,
                             <br>Co. Sligo,
-                            <br>Ireland</p>
+                            <br>Ireland</p-->
                     </div>
                     <!-- End Contact Details -->
                     <!-- Sample Menu -->
                     <div class="col-md-4 margin-bottom-20">
-                        <h3 class="margin-bottom-10">Sample Menu</h3>
+                        <h3 class="margin-bottom-10">Feedback</h3>
+                        {{ form_start(form) }}
+                        {{ form_row(form.name, {'attr': {'placeholder': 'Name'}}) }}
+                        {{ form_row(form.email, {'attr': {'placeholder': 'Email'}}) }}
+                        {{ form_row(form.phone, {'attr': {'placeholder': 'Phone'}}) }}
+                        {{ form_row(form.message, {'attr': {'placeholder': 'Message'}}) }}
+                        <input type="submit" value="Send" />
+                        {{ form_end(form) }}
+                        <!--h3 class="margin-bottom-10">Sample Menu</h3>
                         <ul class="menu">
                             <li>
                                 <a class="fa-tasks" href="#">Placerat facer possim</a>
@@ -161,7 +178,7 @@
                             <li>
                                 <a class="fa-coffee" href="#">Nam liber tempor</a>
                             </li>
-                        </ul>
+                        </ul-->
                         <div class="clearfix"></div>
                     </div>
                     <!-- End Sample Menu -->
@@ -176,16 +193,13 @@
                     <div id="footermenu" class="col-md-8">
                         <ul class="list-unstyled list-inline">
                             <li>
-                                <a href="#" target="_blank">Sample Link</a>
+                                <a href="http://localhost/CMS_symfony/web/app_dev.php/ua/" >Українською</a>
                             </li>
                             <li>
-                                <a href="#" target="_blank">Sample Link</a>
+                                <a href="http://localhost/CMS_symfony/web/app_dev.php/ru/" >Руский</a>
                             </li>
                             <li>
-                                <a href="#" target="_blank">Sample Link</a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">Sample Link</a>
+                                <a href="http://localhost/CMS_symfony/web/app_dev.php/en/" >English</a>
                             </li>
                         </ul>
                     </div>
@@ -198,7 +212,10 @@
                 </div>
             </div>
         </div>
-        {% block other %}
-        {% endblock %}
+    </div>
     </body>
+    {% block javascripts %}
+    {% endblock %}
+    {% block other %}
+    {% endblock %}
 </html>

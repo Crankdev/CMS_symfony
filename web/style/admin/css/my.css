@@ -1,0 +1,87 @@
+.arrange li {
+line-height: 30px;
+margin: 6px;
+background-color: rgba(200, 200, 200, 0.4);
+list-style: none;
+padding-left: 10px;
+}
+.arrange li.red{
+	color: red;
+}
+#mapdiv a {
+color: #fff;
+}
+.arrange li .li_button{
+	color: #999;
+	margin-left: 10px;
+}
+.arrange li .li_button:hover{
+	color: #222;
+}
+
+.moduleButtons button{
+	margin-bottom: 10px;
+}
+
+.texteditor {
+}
+
+.admin_inside{
+	position: relative;
+}
+
+.top_panel{
+	background: #fff;
+	z-index: 5;
+	width:78% important!;
+}
+.top_panel .top_panel_buttons{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+#new_content_dialog{
+	width: 500px;
+}
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+	background-color: #1b1b1b;
+}
+
+.admin-content .table td{
+	vertical-align: middle;
+
+}
+
+td.editRow{
+	font-style: italic;
+	color: #666;
+}
+
+td.editRow:hover{
+	background: #eec !important;
+	color: #000;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#edit_dialog,
+#pass_dialog{
+	width: 800px;
+}
+td.id{
+	text-align: center;
+	color: #88D2E9;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 1px 1px 0px rgb(0, 0, 0);
+}
+
+.option_input input{
+	width: 200px;
+	float: left;
+	margin-right: 15px;
+}
+.option_buttons button{
+	margin-right: 10px;
+}

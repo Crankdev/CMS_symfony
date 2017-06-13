@@ -1,62 +1,46 @@
 <?php $view->extend('::admin.html.php') ?>
 <?php $view['slots']->start('body') ?>
 <div class="top_panel">
-    <h1>Menus list <small>Добавить или редактировать меню</small></h1>
+    <h1>Project list <small>Добавить или редактировать проектов</small></h1>
     <ol class="breadcrumb">
-        <li><a href="<?php echo $view['router']->path('admin_new_project') ?>">Create a new menu</a>
-            <button type="button" class="btn btn-info btn-xs" onclick="newRow()"><i class="fa fa-file"></i> Добавить</button>
+        <li>
+            <a class="btn btn-info btn-xs" href="<?php echo $view['router']->path('admin_new_project') ?>"><i class="fa fa-file"></i>Добавить</a>
             <button type="button" class="btn btn-default btn-xs" onclick="reload()"><i class="fa fa-refresh"></i> Обновить </button>
         </li>
     </ol>
 </div>
 <div class="admin-content">
-    <div class="table-responsive">
-        <div class="table table-bordered table-hover tablesorter">
+    <div class="table-responsive table table-bordered table-hover">
         <table>
-            <thead>
-                <tr>
-                    <th width="70" class="header">ID <i class="fa fa-sort"></i></th>
-                    <th>Name</th>
-                    <th>Name_ru</th>
-                    <th>Name_en</th>
-                    <th>About</th>
-                    <th>About_ru</th>
-                    <th>About_en</th>
-                    <th>Activities</th>
-                    <th>Actions</th>
+            <thead class="table-bordered">
+                <tr class="table-bordered">
+                    <th width="30" class="header">ID <i class="fa fa-sort"></i></th>
+                    <th width="200" class="table-bordered">Name<br>Name_ru<br>Name_en</th>
+                    <th class="table-bordered">About</th>
+                    <th class="table-bordered">About_ru</th>
+                    <th class="table-bordered">About_en</th>
+                    <th class="table-bordered">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-bordered">
 			 <?php foreach( $projects as $project ){ ?>
-                <tr>
-                    <td class="id"><a href="<?php echo $view['router']->path('admin_show_project', array( 'id' => $project->getId() )) ?>">
-						<?php echo $project->getId() ?>
-					</a></td>
-                    <td><?php echo $project->getName() ?></td>
-                    <td><?php echo $project->getNameru() ?></td>
-                    <td><?php echo $project->getNameen() ?></td>
-                    <td><?php echo $project->getAbout() ?></td>
-                    <td><?php echo $project->getAboutru() ?></td>
-                    <td><?php echo $project->getAbouten() ?></td>
-                    <td><?php echo $project->getActivities() ?></td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a href="<?php echo $view['router']->path('admin_show_project', array( 'id'=> $project->getId() )) ?>">show</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo $view['router']->path('admin_edit_project', array( 'id'=> $project->getId() )) ?>">edit</a>
-                            </li>
-							<li>
-                                <a href="<?php echo $view['router']->path('admin_delete_project', array( 'id'=> $project->getId() )) ?>">delete</a>
-                            </li>
-                        </ul>
+                <tr class="table-bordered">
+                    <td class="id">
+                        <a href="<?php echo $view['router']->path('admin_edit_project', array( 'id' => $project->getId() )) ?>">
+						    <?php echo $project->getId() ?>
+					    </a>
+                    </td>
+                    <td class="table-bordered"><?php echo $project->getName()."<br>".$project->getNameru()."<br>".$project->getNameen() ?></td>
+                    <td class="table-bordered"><?php echo $project->getAbout() ?></td>
+                    <td class="table-bordered"><?php echo $project->getAboutru() ?></td>
+                    <td class="table-bordered"><?php echo $project->getAbouten() ?></td>
+                    <td class="table-bordered">
+                        <a href="<?php echo $view['router']->path('admin_edit_project', array( 'id'=> $project->getId() )) ?>">edit</a>
                     </td>
                 </tr>
             <?php } ?>
             </tbody>
         </table>
-        </div>
     </div>
 </div>
 <?php $view['slots']->stop() ?>
