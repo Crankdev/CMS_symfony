@@ -34,8 +34,40 @@ class ActivitiesController extends Controller
             'locale' => $_locale,
             'activities' => $activities,
             'menus' => $menus,
+<<<<<<< HEAD
             'form' =>  $this->feedback(),
             'total_activities' => $total_activities,
+=======
+        ));
+    }
+
+    /**
+     * Creates a new activity entity.
+     *
+     */
+    public function newAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
+        $activity = new Activities();
+        $form = $this->createForm('Front\TopBundle\Form\ActivitiesType', $activity);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($activity);
+            $em->flush($activity);
+
+            return $this->redirectToRoute('Front_proj_show', array('id' => $activity->getId()));
+        }
+
+        return $this->render('activities/new.html.twig', array(
+            'activity' => $activity,
+            'form' => $form->createView(),
+            'menus' => $menus,
+>>>>>>> parent of 5f11dee... Update admin bundle
         ));
     }
 
@@ -46,9 +78,15 @@ class ActivitiesController extends Controller
     public function showAction(Activities $activity , $_locale  = 'ua' )
     {
         $em = $this->getDoctrine()->getManager();
+<<<<<<< HEAD
         $menus = $em->getRepository('FrontMenuBundle:Menu')->findBy(array('is_activated'=> 1));
         $array[0]=$activity;
         $this->translate ($menus, $array,  $_locale);
+=======
+        $menus = $em->getRepository('FrontMenuBundle:Menu')->findAll();
+        $deleteForm = $this->createDeleteForm($activity);
+       // var_dump($activity->getFoto());
+>>>>>>> parent of 5f11dee... Update admin bundle
         return $this->render('activities/show.html.twig', array(
             'locale' => $_locale,
             'activity' => $activity,

@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
+{% block title %}
+
+{% endblock %}
 {% block body %}
+<<<<<<< HEAD
     {% for activity in activities %}
 
+=======
+
+        {% for activity in activities %}
+>>>>>>> parent of 5f11dee... Update admin bundle
     <!-- Blog Post -->
     <div class="blog-post padding-bottom-20">
         <!-- Blog Item Header -->
@@ -15,9 +23,16 @@
             <!-- End Title -->
             <!-- Date -->
             <div class="blog-post-date">
+<<<<<<< HEAD
                 {% if activity.updatedat %}{{ activity.updatedat|date("F jS  Y")  }}
                 {% else %}{{ activity.createdat|date("F jS  Y") }}
                 {% endif %}
+=======
+                <a href="#">
+                    {% if activity.updatedat %}{{ activity.updatedat|date('Y-m-d') }}
+                    {% else %}{{ activity.createdat|date('Y-m-d') }}
+                    {% endif %}</a>
+>>>>>>> parent of 5f11dee... Update admin bundle
             </div>
             <!-- End Date -->
         </div>
@@ -64,7 +79,17 @@
     </div>
 
     <!-- End Blog Item -->
+<<<<<<< HEAD
     {% endfor %}
+=======
+
+        {% endfor %}
+    <ul>
+        <li>
+            <a href="{{ path('Front_proj_new') }}">Create a new activity</a>
+        </li>
+    </ul>
+>>>>>>> parent of 5f11dee... Update admin bundle
     <!-- Pagination -->
     <ul class="pagination">
         <li>

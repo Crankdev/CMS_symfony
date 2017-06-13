@@ -5,8 +5,11 @@ namespace Front\MenuBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+<<<<<<< HEAD
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+=======
+>>>>>>> parent of 5f11dee... Update admin bundle
 
 class ListitType extends AbstractType
 {
@@ -27,7 +30,11 @@ class ListitType extends AbstractType
             ->add('locales')
             ->add('url')
             ->add('is_activated')
+<<<<<<< HEAD
             ->add('foto', FileType::class, array('label' => 'Img ','data_class' => null,'required' => false ))
+=======
+            ->add('foto')
+>>>>>>> parent of 5f11dee... Update admin bundle
             ->add('youtube')
            // ->add('updated_at')
             ->add('menu');

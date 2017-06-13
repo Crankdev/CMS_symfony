@@ -2,6 +2,7 @@
 {% block title %}
 
 {% endblock %}
+<<<<<<< HEAD
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('style/css/bootstrap.css') }}" >
     <link rel="stylesheet" href="{{ asset('style/css/animate.css') }}" >
@@ -86,8 +87,46 @@
                                      </figure>
                             {% endfor %}
                             </div>
+=======
+{% block body %}
+    <div id="content">
+        <div class="container background-white">
+            <div class="row margin-vert-30">
+                <!-- Main Column -->
+                <div class="blog-post">
+                    <div class="blog-item-header">
+                        <h2>
+                            <a href="#">
+                                {{ activity.name }}
+                            </a>
+                        </h2>
+                        <!-- Date -->
+                        <div class="blog-post-date">
+                            <a href="#">
+                                {% if activity.updatedat %}{{ activity.updatedat|date('Y-m-d') }}
+                                {% else %}{{ activity.createdat|date('Y-m-d') }}
+                                {% endif %}</a>
                         </div>
+                        <!-- End Date -->
                     </div>
+                    <div class="blog-post-details">
+                        <!-- Author Name -->
+                        <div class="blog-post-details-item blog-post-details-item-left user-icon">
+                            <i class="fa fa-user color-gray-light"></i>
+                            <a href="#">Admin</a>
+>>>>>>> parent of 5f11dee... Update admin bundle
+                        </div>
+                        <!-- End Author Name -->
+                        <!-- Tags -->
+                        <div class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
+                            <i class="fa fa-tag color-gray-light"></i>
+                            <a href="#">PHP</a>,
+                            <a href="#">Javascript</a>,
+                            <a href="#">CoffeeScript</a>
+                        </div>
+                        <!-- End Tags -->
+                    </div>
+<<<<<<< HEAD
                 </div>
             </div>
             <hr class="margin-top-20">
@@ -124,31 +163,76 @@
                                                         </a>
                                                     </em>
                                                  </span>
+=======
+                    <div class="blog-item">
+                        <div class="clearfix"></div>
+                        <div class="blog-post-body row margin-top-15">
+                            <div class="col-md-7">
+                            </div>
+                            <div class="col-md-12">
+                                <p>{{ activity.about }}</p>
+                                <blockquote class="primary">
+                                    <p>
+                                        <em>{{ activity.needs }}</em>
+                                    </p>
+                                    <small>
+
+                                        <cite title="Source Title">Потреби</cite>
+                                    </small>
+                                </blockquote>
+                                <h2>FOTO</h2>
+                                <div class="row">
+                                    <div class="col-md-12 portfolio-group no-padding">
+                                        <!-- Portfolio Item -->
+                                        {% for foto in activity.foto %}
+                                            <div class="col-md-3 portfolio-item margin-bottom-40 code">
+                                            <div>
+                                                <a href="#">
+                                                    <figure>
+                                                        <img class="margin-bottom-20" src="{{ asset('uploads/imeges/') ~foto.name }}" alt="image1">
+                                                    </figure>
+                                                </a>
+>>>>>>> parent of 5f11dee... Update admin bundle
                                             </div>
                                         </div>
-                                        <div class="clearfix"></div>
+                                    {% endfor %}
                                     </div>
-                                {% endif %}
-                                {% endfor %}
+                                </div>
 
                             </div>
                         </div>
-                        <div class="testimonials-arrows pull-right">
-                            <a class="left" href="#testimonials2" data-slide="prev">
-                                <span class="fa fa-arrow-left"></span>
-                            </a>
-                            <a class="right" href="#testimonials2" data-slide="next">
-                                <span class="fa fa-arrow-right"></span>
-                            </a>
-                        <div class="clearfix"></div>
+                        {% for people in activity.people %}
+                        <div class="blog-item-footer">
+                            <!-- About the Author -->
+                            <div class="blog-author panel panel-default margin-bottom-30">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img class="pull-left" src="{{ asset('uploads/foto_people/') ~people.foto }}" alt="image1">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <label>{{ people.name }}</label>
+                                            <p>{{ people.who }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- End About the Author -->
                     </div>
+<<<<<<< HEAD
                     <!-- End Testimonials - default full width -->
                  </div>
                 {% endif %}
+=======
+                </div>
+>>>>>>> parent of 5f11dee... Update admin bundle
             </div>
-        </div>
             <!-- End Blog Post -->
+        </div>
+        <!-- End Main Column -->
     </div>
+<<<<<<< HEAD
     <!-- End Main Column -->
     <a href="{{ path('Front_proj_index') }}">Повернутись </a>
 
@@ -224,4 +308,23 @@
         </div>
 
     </div>
+=======
+    </div>
+    </div>
+    <!-- === END CONTENT === -->
+
+    <ul>
+        <li>
+            <a href="{{ path('Front_proj_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('Front_proj_edit', { 'id': activity.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+>>>>>>> parent of 5f11dee... Update admin bundle
 {% endblock %}

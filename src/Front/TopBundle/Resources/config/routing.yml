@@ -1,8 +1,14 @@
 front_top_Front_proj:
     resource: "@FrontTopBundle/Resources/config/routing/activities.yml"
     prefix:   /
+<<<<<<< HEAD
 front_top_Front_feedback:
     resource: "@FrontTopBundle/Resources/config/routing/feedback.yml"
     prefix:   /feedback
 
 
+=======
+front_top_Front_foto:
+    resource: "@FrontTopBundle/Resources/config/routing/foto.yml"
+    prefix:   /Front_foto
+>>>>>>> parent of 5f11dee... Update admin bundle

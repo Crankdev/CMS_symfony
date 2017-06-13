@@ -45,14 +45,14 @@ class Project
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $activities;
+    private $activites;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->activites = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -212,13 +212,13 @@ class Project
     /**
      * Add activite
      *
-     * @param \Front\TopBundle\Entity\activities $activities
+     * @param \Front\TopBundle\Entity\activities $activite
      *
      * @return Project
      */
-    public function addActivities(\Front\TopBundle\Entity\activities $activities)
+    public function addActivite(\Front\TopBundle\Entity\activities $activite)
     {
-        $this->activities[] = $activities;
+        $this->activites[] = $activite;
 
         return $this;
     }
@@ -228,9 +228,9 @@ class Project
      *
      * @param \Front\TopBundle\Entity\activities $activite
      */
-    public function removeActivities(\Front\TopBundle\Entity\activities $activities)
+    public function removeActivite(\Front\TopBundle\Entity\activities $activite)
     {
-        $this->activities->removeElement($activities);
+        $this->activites->removeElement($activite);
     }
 
     /**
@@ -238,16 +238,12 @@ class Project
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getActivities()
+    public function getActivites()
     {
-        return $this->activities;
+        return $this->activites;
     }
-
     public function __toString()
     {
-        if(is_null($this->name)) {
-            return 'NULL';
-        }
         return $this->name;
     }
 

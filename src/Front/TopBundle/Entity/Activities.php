@@ -432,7 +432,13 @@ class Activities
     {
         // Add your code here
     }
-
+    public function __toString()
+    {
+        if(is_null($this->name)) {
+            return 'NULL';
+        }
+        return $this->name;
+    }
     /**
      * @var string
      */
@@ -539,6 +545,7 @@ class Activities
         $this->foto = new \Doctrine\Common\Collections\ArrayCollection();
         $this->people = new \Doctrine\Common\Collections\ArrayCollection();
     }
+<<<<<<< HEAD
     public function __toString()
     {
         if(is_null($this->name)) {
@@ -546,5 +553,7 @@ class Activities
         }
         return $this->name;
     }
+=======
+>>>>>>> parent of 5f11dee... Update admin bundle
 
 }

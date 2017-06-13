@@ -22,6 +22,10 @@ class People
      */
     private $who;
 
+    /**
+     * @var string
+     */
+    private $foto_peope;
 
     /**
      * @var string
@@ -37,6 +41,9 @@ class People
      * @var string
      */
     private $facebook;
+
+
+
 
     /**
      * Get id
@@ -94,6 +101,30 @@ class People
     public function getWho()
     {
         return $this->who;
+    }
+
+    /**
+     * Set fotoPeope
+     *
+     * @param string $fotoPeope
+     *
+     * @return People
+     */
+    public function setFotoPeope($fotoPeope)
+    {
+        $this->foto_peope = $fotoPeope;
+
+        return $this;
+    }
+
+    /**
+     * Get fotoPeope
+     *
+     * @return string
+     */
+    public function getFotoPeope()
+    {
+        return $this->foto_peope;
     }
 
     /**

@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
+{% block title %}
 
+{% endblock %}
 {% block body %}
-    <h1>Feedback edit</h1>
+    <h1>Activity edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -10,11 +12,7 @@
 
     <ul>
         <li>
-<<<<<<< HEAD:app/Resources/views/feedback/edit.html.twig
-            <a href="{{ path('feedback_index') }}">Back to the list</a>
-=======
-            <a href="{{ path('m_index') }}">Back to the list</a>
->>>>>>> parent of 5f11dee... Update admin bundle:app/Resources/views/menu/edit.html.twig
+            <a href="{{ path('Front_proj_index') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

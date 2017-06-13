@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Activities list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Foto</th>
+                <th>size_x</th>
+                <th>size_y</th>
+                <th>active</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for foto in fotos %}
+            <tr>
+                <td><a href="{{ path('Front_foto_show', { 'id': foto.id }) }}">{{ foto.id }}</a></td>
+                <td>{{ foto.name }}</td>
+                <td><img src="{{ asset('uploads/imeges/') ~foto.name }}"  width="10%"></td>
+                <td>{{ foto.sizex }}</td>
+                <td>{{ foto.sizey }}</td>
+                <td>{{ foto.activities }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('Front_foto_new') }}">Create a new activity</a>
+        </li>
+    </ul>
+{% endblock %}
